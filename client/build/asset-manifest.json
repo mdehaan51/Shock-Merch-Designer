@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Shock-Park-Builder/static/css/main.828e2edc.chunk.css",
+    "main.js": "/Shock-Park-Builder/static/js/main.e0b5fae9.chunk.js",
+    "main.js.map": "/Shock-Park-Builder/static/js/main.e0b5fae9.chunk.js.map",
+    "runtime~main.js": "/Shock-Park-Builder/static/js/runtime~main.a57a531d.js",
+    "runtime~main.js.map": "/Shock-Park-Builder/static/js/runtime~main.a57a531d.js.map",
+    "static/js/2.e69afca1.chunk.js": "/Shock-Park-Builder/static/js/2.e69afca1.chunk.js",
+    "static/js/2.e69afca1.chunk.js.map": "/Shock-Park-Builder/static/js/2.e69afca1.chunk.js.map",
+    "index.html": "/Shock-Park-Builder/index.html",
+    "precache-manifest.1ba1447bf92eabfacfb080bf2b088bd0.js": "/Shock-Park-Builder/precache-manifest.1ba1447bf92eabfacfb080bf2b088bd0.js",
+    "service-worker.js": "/Shock-Park-Builder/service-worker.js",
+    "static/css/main.828e2edc.chunk.css.map": "/Shock-Park-Builder/static/css/main.828e2edc.chunk.css.map"
+  }
+}

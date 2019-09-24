@@ -1,0 +1,25 @@
+.design-settings-container {
+	display: flex;
+	justify-content: center;
+}
+
+.design-details-container {
+}
+
+.circle-picker {
+	margin: auto !important;
+}
+
+.text-editor-input {
+	text-align: center;
+}
+
+#font-picker button {
+	background: black;
+	color: white;
+}
+
+#font-picker li {
+	background: black;
+	color: white;
+}

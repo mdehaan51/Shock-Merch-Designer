@@ -1,0 +1,439 @@
+.App {
+  text-align: center;
+}
+
+/* label color */
+.input-field label {
+  color: #ff367a;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label,
+.input-field input[type="email"]:focus + label,
+.input-field input[type="password"]:focus + label,
+.input-field input[type="tel"]:focus + label,
+.input-field input[type="number"]:focus + label,
+textarea.materialize-textarea {
+  color: #ff367a !important;
+}
+/* label underline focus color */
+.input-field input[type="text"]:focus,
+.input-field input[type="email"]:focus,
+.input-field input[type="password"]:focus,
+.input-field input[type="tel"]:focus,
+.input-field input[type="number"]:focus,
+textarea.materialize-textarea:focus {
+  border-bottom: 1px solid #ff367a !important;
+  box-shadow: 0 1px 0 0 #ff367a !important;
+}
+/* valid color */
+.input-field input[type="text"].valid,
+.input-field input[type="text"].valid,
+.input-field input[type="password"].valid,
+.input-field input[type="tel"].valid,
+.input-field input[type="number"].valid,
+textarea.materialize-textarea.valid {
+  border-bottom: 1px solid #ff367a !important;
+  box-shadow: 0 1px 0 0 #ff367a !important;
+}
+/* invalid color */
+.input-field input[type="text"].invalid,
+.input-field input[type="email"].invalid,
+.input-field input[type="password"].invalid,
+.input-field input[type="tel"].invalid,
+.input-field input[type="number"].invalid,
+textarea.materialize-textarea.invalud {
+  border-bottom: 1px solid #ff0000 !important;
+  box-shadow: 0 1px 0 0 #ff0000 !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #ff367a;
+}
+
+.navbar {
+  width: 100%;
+  position: relative;
+  top: 0;
+  height: 50px;
+  background-color: black;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.company-icon {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.company-icon img {
+  width: 100%;
+  max-width: 200px;
+}
+.size-input {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: center;
+}
+
+.size-input input {
+  height: 24px;
+  border-radius: 2px;
+  text-align: center;
+  margin: 0 10px;
+  border: 1px solid #ff367a;
+  background: lightgray;
+  color: white;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.button {
+  border-radius: 2px;
+  background-color: #ff367a;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  min-width: 105px;
+  margin: 0 10px;
+}
+.logout-button {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  color: #ff367a;
+}
+.submission-buttons {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+}
+
+.close-modal {
+  position: absolute;
+  height: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100000;
+  max-height: 100% !important;
+}
+
+.modal h2 {
+  font-weight: bold;
+  text-shadow: 1px 1px 1px black;
+}
+
+.modal-main {
+  position: fixed;
+  width: 80%;
+  height: 550px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ff367a;
+  border-radius: 10px;
+  padding: 10px 0;
+  overflow: hidden;
+  color: #ff367a;
+  background-color: dimgray;
+}
+.modal-background {
+  position: absolute;
+  left: 0;
+  top: -145px;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  z-index: -1;
+}
+.modal-background-dimmer {
+  background-color: gray;
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 100%;
+  height: auto;
+  opacity: 0.3;
+  z-index: -1;
+  height: 110%;
+  width: 100%;
+}
+.modal-form {
+  width: 60%;
+  padding: 10px 0;
+  margin: auto;
+}
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.form-row input {
+  width: 300px;
+  height: 24px;
+  border-radius: 2px;
+  text-align: center;
+  margin: 0 5px 8px !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: white;
+}
+.form-row select {
+  border-radius: 2px;
+  text-align: center;
+  text-align-last: center;
+  margin: 0 5px 8px !important;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: white;
+}
+.form-row select:focus {
+  border-bottom: 1px solid #ff367a;
+  outline: none;
+}
+.form-row option:disabled {
+  color: black;
+}
+
+.form-row textarea {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+.builder-container {
+  display: flex;
+  height: 94.6vh;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.5)
+  );
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+.container-background {
+  z-index: -5;
+  opacity: 0.2;
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.object-list-container {
+  width: 20%;
+  min-width: 400px;
+  border-right: 1px solid black;
+  overflow-y: scroll;
+}
+
+.object-list-container::-webkit-scrollbar {
+  width: 5px;
+}
+.object-list-container::-webkit-scrollbar-thumb {
+  background: #ff367a;
+  height: 10px;
+  border-radius: 15px;
+}
+.object-item-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 50px;
+}
+.object-item {
+  width: 45%;
+  margin-bottom: 50;
+}
+
+.object-name {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.object-item p {
+}
+
+.object-item-image {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.object-item-image img {
+  max-height: 100%;
+  max-width: 80%;
+  cursor: grab;
+}
+.object-actions {
+  position: absolute;
+  width: 105%;
+  min-width: 50px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.delete-component {
+  position: absolute;
+  width: 20px;
+  /* padding: 5px; */
+}
+.delete-component img {
+  width: 100%;
+  cursor: pointer;
+}
+.rotate-component {
+  position: absolute;
+  width: 20px;
+  /* padding: 5px; */
+  right: 0;
+}
+
+.rotate-component img {
+  width: 100%;
+  cursor: pointer;
+}
+.grid-container {
+  position: relative;
+  width: 65%;
+  height: 100%;
+  overflow: auto;
+}
+
+.grid-container::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+  background: #ff367a;
+  border-radius: 15px;
+}
+
+.width-distance {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #f5f5f5;
+  text-shadow: 0px 0px 2px #000000;
+}
+.height-distance {
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  transform: rotate(-90deg);
+  color: #f5f5f5;
+  text-shadow: 0px 0px 2px #000000;
+}
+.grid-note {
+  color: #f5f5f5;
+  text-shadow: 0px 0px 2px #000000;
+}
+.grid-box {
+  width: 500px;
+  position: relative;
+  height: 500px;
+  margin: 0px auto 20px;
+  background-color: grey;
+}
+.grid {
+  width: 500px;
+  position: relative;
+  height: 500px;
+  background-color: grey;
+  background-size: 28px 28px;
+  background-image: linear-gradient(to right, dimgrey 2px, transparent 1px),
+    linear-gradient(to bottom, dimgrey 1px, transparent 1px);
+  border: 1px solid black;
+}
+.grid:active {
+  cursor: grabbing;
+}
+.grid-item {
+  position: absolute;
+}
+.object-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.active {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  z-index: 1000;
+}
+
+.layout {
+  background-color: grey;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid black;
+}
+.react-grid-item {
+  cursor: pointer;
+}
+
+.counter-container {
+  width: 15%;
+  border-left: 1px solid black;
+  padding: 0 10px;
+}
+.counter-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.counter-row span {
+  text-align: left;
+}
+.rotated {
+  transform: rotate(90deg) !important;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
