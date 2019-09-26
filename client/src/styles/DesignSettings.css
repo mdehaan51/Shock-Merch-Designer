@@ -3,15 +3,34 @@
 	justify-content: center;
 }
 
-.design-details-container {
+.design-settings-container p {
+	margin-bottom: 0;
+}
+
+.design-details-container label {
+	font-weight: bold;
+	color: white;
+	font-size: 14px;
+}
+
+.react-tabs {
+	width: 100%;
+}
+
+.text-editor {
+	margin-top: 50px;
 }
 
 .circle-picker {
 	margin: auto !important;
+	padding-top: 12px;
 }
 
 .text-editor-input {
 	text-align: center;
+}
+#font-picker {
+	padding-top: 12px;
 }
 
 #font-picker button {
@@ -22,4 +41,41 @@
 #font-picker li {
 	background: black;
 	color: white;
+}
+
+.number-picker {
+	display: flex;
+	width: 75px;
+	margin: auto;
+}
+
+.number-picker-input {
+	text-align: center;
+	color: white;
+	padding-top: 3.5px !important;
+	border: none !important;
+}
+
+.number-picker-numbers {
+	display: flex;
+}
+
+.number-picker-arrows {
+	padding-top: 10px;
+	padding-left: 5px;
+}
+
+.deactivated {
+	visibility: hidden;
+}
+
+.up-arrow,
+.down-arrow {
+	cursor: pointer;
+	height: 15px;
+}
+
+.up-arrow:hover,
+.down-arrow:hover {
+	color: #ff367a;
 }

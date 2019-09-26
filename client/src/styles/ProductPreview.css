@@ -1,8 +1,43 @@
 .preview-container {
 	display: flex;
 	justify-content: center;
+	position: relative;
+	height: 100%;
 }
 
 .preview-img {
-	height: 500px;
+	height: 100%;
+	width: auto;
+}
+
+.text-preview-container {
+	display: inline-block;
+}
+
+.logo-preview-container {
+	width: 100px;
+	height: 100px;
+}
+
+.logo-preview-container img {
+	width: 100px;
+	height: 100px;
+}
+
+.text-preview-container p {
+	margin: 0;
+}
+
+.text-boundary {
+	position: relative;
+	border: 1px solid white;
+	height: 200px;
+	min-width: 100px;
+	max-width: 100px;
+	top: 40px;
+	left: 478px;
+}
+
+.react-draggable {
+	display: inline-block;
 }

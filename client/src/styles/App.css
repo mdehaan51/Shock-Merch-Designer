@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.grabable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
 /* label color */
 .input-field label {
   color: #ff367a;

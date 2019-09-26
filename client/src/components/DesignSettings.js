@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import ColorPicker from "./ColorPicker";
 import TextEditor from "./TextEditor";
+import LogoUpload from "./LogoUpload";
 
 import { saveColor } from "../actions/designActions";
 import { connect } from "react-redux";
@@ -39,6 +40,7 @@ class DesignSettings extends Component {
 					</TabPanel>
 					<TabPanel>
 						<h2>Add Logo</h2>
+						<LogoUpload />
 					</TabPanel>
 				</Tabs>
 			</div>

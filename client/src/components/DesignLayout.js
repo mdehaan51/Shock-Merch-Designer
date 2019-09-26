@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 //Component Imports
 import Modal from "./Modal.js";
 import ProductPreview from "./ProductPreview";
+
 import DesignSettings from "./DesignSettings";
 import Navbar from "./NavBar.js";
 
@@ -77,10 +78,10 @@ class DesignLayout extends Component {
             Logout
           </a>
           <div className="row design-body">
-            <div className="col s8">
+            <div className="col s6">
               <ProductPreview />
             </div>
-            <div className="col s8">
+            <div className="col s6">
               <DesignSettings />
             </div>
           </div>

@@ -8,6 +8,12 @@ export const SET_CURRENT_ADMIN = "SET_CURRENT_ADMIN";
 export const SET_DESIGN_COLOR = "SET_DESIGN_COLOR";
 export const SET_DESIGN_FONT = "SET_DESIGN_FONT";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
+export const SET_FONT_SIZE = "SET_FONT_SIZE";
+export const SET_FONT_ROTATION = "SET_FONT_ROTATION";
+export const SET_FONT_WEIGHT = "SET_FONT_WEIGHT";
+export const SET_LINE_HEIGHT = "SET_LINE_HEIGHT";
+export const SET_TEXT_COLOR = "SET_TEXT_COLOR";
+export const SAVE_LOGO = "SAVE_LOGO";
 
 //Grid Actions
 export const SET_GRID_SIZE = "SET_GRID_SIZE";

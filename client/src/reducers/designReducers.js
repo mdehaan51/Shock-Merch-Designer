@@ -1,7 +1,13 @@
 import {
 	SET_DESIGN_COLOR,
 	SET_DESIGN_FONT,
-	TOGGLE_MODAL
+	TOGGLE_MODAL,
+	SET_FONT_SIZE,
+	SET_FONT_ROTATION,
+	SET_FONT_WEIGHT,
+	SET_LINE_HEIGHT,
+	SET_TEXT_COLOR,
+	SAVE_LOGO
 } from "../actions/types";
 
 const initialState = {
@@ -10,9 +16,15 @@ const initialState = {
 		type: "request",
 		title: "Lets Get This Park Started!"
 	},
+	font: "My Park",
 	primary: "#A8DF54",
 	secondary: "#A8DF54",
-	font: ""
+	fontSize: 18,
+	fontRotation: 0,
+	fontWeight: 200,
+	lineHeight: 18,
+	textColor: "white",
+	logo: ""
 };
 
 export default function(state = initialState, action) {
@@ -42,6 +54,36 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				font: action.payload
+			};
+		case SET_FONT_SIZE:
+			return {
+				...state,
+				fontSize: action.payload
+			};
+		case SET_FONT_ROTATION:
+			return {
+				...state,
+				fontRotation: action.payload
+			};
+		case SET_FONT_WEIGHT:
+			return {
+				...state,
+				fontWeight: action.payload
+			};
+		case SET_LINE_HEIGHT:
+			return {
+				...state,
+				lineHeight: action.payload
+			};
+		case SET_TEXT_COLOR:
+			return {
+				...state,
+				textColor: action.payload
+			};
+		case SAVE_LOGO:
+			return {
+				...state,
+				logo: action.payload
 			};
 
 		default:
