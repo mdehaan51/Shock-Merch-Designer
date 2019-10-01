@@ -10,12 +10,12 @@ class TextPreview extends Component {
 	}
 
 	render() {
-		let text = this.props.design.font;
-		let size = this.props.design.fontSize;
-		let rotation = this.props.design.fontRotation;
-		let weight = this.props.design.fontWeight;
-		let lineHeight = this.props.design.lineHeight;
-		let color = this.props.design.textColor;
+		let text = this.props.data.font;
+		let size = this.props.data.fontSize;
+		let rotation = this.props.data.fontRotation;
+		let weight = this.props.data.fontWeight;
+		let lineHeight = this.props.data.lineHeight;
+		let color = this.props.data.textColor;
 
 		let sampleText = {
 			fontSize: `${size}px`,

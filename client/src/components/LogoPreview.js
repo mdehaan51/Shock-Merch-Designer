@@ -16,9 +16,14 @@ class TextPreview extends Component {
 	render() {
 		let logo = this.props.design.logo;
 		let hidden = true;
-		if (logo !== "") {
+		if (logo !== "" && logo !== null) {
 			hidden = false;
 		}
+		let size = this.props.design.logoSize;
+		let rotation = this.props.design.logoRotation;
+		let style = {
+			transform: `rotate(${rotation}deg) scale(${size})`
+		};
 
 		return (
 			<div
@@ -27,6 +32,7 @@ class TextPreview extends Component {
 						? "deactivated"
 						: "logo-preview-container grabable"
 				}
+				style={style}
 			>
 				<img
 					className={hidden === true ? "deactivated" : ""}

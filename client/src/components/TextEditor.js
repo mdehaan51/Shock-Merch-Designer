@@ -29,15 +29,21 @@ class TextEditor extends Component {
 	};
 
 	changeText = event => {
-		this.props.addText("text", event.target.value);
+		this.props.addText("text", event.target.value, this.props.view);
 	};
 
 	onColorChange = (color, event) => {
 		console.log(color);
-		this.props.textColor(color.hex);
+		this.props.textColor(color.hex, this.props.view);
 	};
 
 	render() {
+		let data = "";
+		if (this.props.view === "side") {
+			data = this.props.design.side;
+		} else if (this.props.view === "bottom") {
+			data = this.props.design.bottom;
+		}
 		return (
 			<div className="design-details-container text-editor ">
 				<div className="row">
@@ -72,21 +78,40 @@ class TextEditor extends Component {
 						<div className="row">
 							<div className="col s6">
 								<label>Font Size</label>
-								<FontSizeSelect unit="px" type="fontSize" />
+								<FontSizeSelect
+									unit="px"
+									type="fontSize"
+									data={data}
+									view={this.props.view}
+								/>
 							</div>
 							<div className="col s6">
 								<label>Rotation</label>
-								<FontSizeSelect unit="deg" type="rotation" />
+								<FontSizeSelect
+									unit="deg"
+									type="rotation"
+									data={data}
+									view={this.props.view}
+								/>
 							</div>
 						</div>
 						<div className="row">
 							<div className="col s6">
 								<label>Weight</label>
-								<FontSizeSelect type="weight" />
+								<FontSizeSelect
+									type="weight"
+									data={data}
+									view={this.props.view}
+								/>
 							</div>
 							<div className="col s6">
 								<label>Line Height</label>
-								<FontSizeSelect unit="px" type="height" />
+								<FontSizeSelect
+									unit="px"
+									type="height"
+									data={data}
+									view={this.props.view}
+								/>
 							</div>
 						</div>
 					</div>

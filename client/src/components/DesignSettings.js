@@ -33,14 +33,20 @@ class DesignSettings extends Component {
 						<Tab>Add Logo</Tab>
 					</TabList>
 					<TabPanel>
-						<TextEditor />
+						<h5>Add Some Text</h5>
+						<TextEditor view={this.props.view} />
 					</TabPanel>
 					<TabPanel>
+						<h5>Choose Sock Colors</h5>
 						<ColorPicker />
 					</TabPanel>
 					<TabPanel>
-						<h2>Add Logo</h2>
-						<LogoUpload />
+						<h5>Add A Logo</h5>
+						<p>
+							For Best Results, choose an image {"\n"} with a
+							transparent background
+						</p>
+						<LogoUpload view={this.props.view} />
 					</TabPanel>
 				</Tabs>
 			</div>

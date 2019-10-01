@@ -224,6 +224,14 @@ input[type="number"] {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
+.main-tabs {
+  border-bottom: 1px solid white;
+}
+
+.react-tabs__tab {
+  width: 30%;
+}
+
 .display-block {
   display: block;
 }

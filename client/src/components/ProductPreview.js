@@ -15,6 +15,12 @@ class ProductPreview extends Component {
 	}
 
 	render() {
+		let data = "";
+		if (this.props.view === "side") {
+			data = this.props.design.side;
+		} else if (this.props.view === "bottom") {
+			data = this.props.design.bottom;
+		}
 		return (
 			<div className="preview-container">
 				<div className="text-boundary">
@@ -23,7 +29,7 @@ class ProductPreview extends Component {
 						defaultPosition={{ x: 0, y: 30 }}
 					>
 						<div>
-							<TextPreview />
+							<TextPreview data={data} />
 						</div>
 					</Draggable>
 					<Draggable
@@ -35,7 +41,7 @@ class ProductPreview extends Component {
 						</div>
 					</Draggable>
 				</div>
-				<img className="preview-img" src="images/GreenSocks.png" />
+				<img className="preview-img" src={data.sockPic} />
 			</div>
 		);
 	}

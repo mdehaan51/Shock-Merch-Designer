@@ -8,6 +8,8 @@ import ProductPreview from "./ProductPreview";
 import DesignSettings from "./DesignSettings";
 import Navbar from "./NavBar.js";
 
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
 //Redux Imports
 import { logoutUser } from "../actions/authActions";
 import { toggleModal } from "../actions/gridActions";
@@ -78,12 +80,37 @@ class DesignLayout extends Component {
             Logout
           </a>
           <div className="row design-body">
-            <div className="col s6">
-              <ProductPreview />
-            </div>
-            <div className="col s6">
-              <DesignSettings />
-            </div>
+            <Tabs>
+              <TabList className="main-tabs">
+                <Tab>Side of Sock</Tab>
+                <Tab>Bottom Of Sock</Tab>
+                <Tab>Top Of Sock</Tab>
+              </TabList>
+              <TabPanel>
+                <div className="col s6">
+                  <ProductPreview view="side" />
+                </div>
+                <div className="col s6">
+                  <DesignSettings view="side" />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className="col s6">
+                  <ProductPreview view="bottom" />
+                </div>
+                <div className="col s6">
+                  <DesignSettings view="bottom" />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className="col s6">
+                  <ProductPreview view="top" />
+                </div>
+                <div className="col s6">
+                  <DesignSettings view="top" />
+                </div>
+              </TabPanel>
+            </Tabs>
           </div>
         </div>
       </div>

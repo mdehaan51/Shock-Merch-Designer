@@ -17,15 +17,25 @@ class ColorPicker extends Component {
 
 	handleChange = (color, event, name) => {
 		console.log(name);
-		this.props.saveColor(name, color.hex);
+		this.props.saveColor(name, color.hex, "sideSock");
 	};
 
 	render() {
+		const colors = [
+			"#ffffff",
+			"#78A4F9",
+			"#F8894B",
+			"#EB70CD",
+			"#F64247",
+			"#000000",
+			"#DAD06F"
+		];
 		return (
 			<div className="color-picker-container">
 				<h3>Primary Color</h3>
 				<CirclePicker
 					label="primary"
+					colors={colors}
 					onChangeComplete={(color, event, name) =>
 						this.handleChange(color, event, "primary")
 					}

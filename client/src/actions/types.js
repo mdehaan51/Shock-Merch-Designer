@@ -14,6 +14,8 @@ export const SET_FONT_WEIGHT = "SET_FONT_WEIGHT";
 export const SET_LINE_HEIGHT = "SET_LINE_HEIGHT";
 export const SET_TEXT_COLOR = "SET_TEXT_COLOR";
 export const SAVE_LOGO = "SAVE_LOGO";
+export const SET_LOGO_SIZE = "SET_LOGO_SIZE";
+export const SET_LOGO_ROTATION = "SET_LOGO_ROTATION";
 
 //Grid Actions
 export const SET_GRID_SIZE = "SET_GRID_SIZE";

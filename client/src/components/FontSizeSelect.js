@@ -22,33 +22,57 @@ class FontSizeSelect extends Component {
 
 	countUp = () => {
 		if (this.props.type === "fontSize") {
-			this.props.setFontSize(this.props.design.fontSize + 1);
-			this.checkRange(this.props.design.fontSize, 72, "up");
+			this.props.setFontSize(
+				this.props.data.fontSize + 1,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontSize, 72, "up");
 		} else if (this.props.type === "rotation") {
-			this.props.setFontRotation(this.props.design.fontRotation + 15);
-			this.checkRange(this.props.design.fontRotation, 165, "up");
+			this.props.setFontRotation(
+				this.props.data.fontRotation + 15,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontRotation, 165, "up");
 		} else if (this.props.type === "weight") {
-			this.props.setFontWeight(this.props.design.fontWeight + 100);
-			this.checkRange(this.props.design.fontWeight, 800, "up");
+			this.props.setFontWeight(
+				this.props.data.fontWeight + 100,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontWeight, 800, "up");
 		} else if (this.props.type === "height") {
-			this.props.setLineHeight(this.props.design.lineHeight + 1);
-			this.checkRange(this.props.design.lineHeight, 49, "up");
+			this.props.setLineHeight(
+				this.props.data.lineHeight + 1,
+				this.props.view
+			);
+			this.checkRange(this.props.data.lineHeight, 49, "up");
 		}
 	};
 
 	countDown = () => {
 		if (this.props.type === "fontSize") {
-			this.props.setFontSize(this.props.design.fontSize - 1);
-			this.checkRange(this.props.design.fontSize, 10, "down");
+			this.props.setFontSize(
+				this.props.data.fontSize - 1,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontSize, 10, "down");
 		} else if (this.props.type === "rotation") {
-			this.props.setFontRotation(this.props.design.fontRotation - 15);
-			this.checkRange(this.props.design.fontRotation, -165, "down");
+			this.props.setFontRotation(
+				this.props.data.fontRotation - 15,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontRotation, -165, "down");
 		} else if (this.props.type === "weight") {
-			this.props.setFontWeight(this.props.design.fontWeight - 100);
-			this.checkRange(this.props.design.fontWeight, 200, "down");
+			this.props.setFontWeight(
+				this.props.data.fontWeight - 100,
+				this.props.view
+			);
+			this.checkRange(this.props.data.fontWeight, 200, "down");
 		} else if (this.props.type === "height") {
-			this.props.setLineHeight(this.props.design.lineHeight - 1);
-			this.checkRange(this.props.design.lineHeight, 1, "down");
+			this.props.setLineHeight(
+				this.props.data.lineHeight - 1,
+				this.props.view
+			);
+			this.checkRange(this.props.data.lineHeight, 1, "down");
 		}
 	};
 
@@ -79,14 +103,16 @@ class FontSizeSelect extends Component {
 	render() {
 		let type = this.props.type;
 		let value = "";
-		if (type === "fontSize") {
-			value = this.props.design.fontSize;
-		} else if (type === "rotation") {
-			value = this.props.design.fontRotation;
-		} else if (type === "weight") {
-			value = this.props.design.fontWeight;
-		} else if (type === "height") {
-			value = this.props.design.lineHeight;
+		if (type) {
+			if (type === "fontSize") {
+				value = this.props.data.fontSize;
+			} else if (type === "rotation") {
+				value = this.props.data.fontRotation;
+			} else if (type === "weight") {
+				value = this.props.data.fontWeight;
+			} else if (type === "height") {
+				value = this.props.data.lineHeight;
+			}
 		}
 		return (
 			<div className="number-picker">

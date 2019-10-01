@@ -7,7 +7,8 @@
 	margin-bottom: 0;
 }
 
-.design-details-container label {
+.design-details-container label,
+.logo-upload-container label {
 	font-weight: bold;
 	color: white;
 	font-size: 14px;
@@ -78,4 +79,31 @@
 .up-arrow:hover,
 .down-arrow:hover {
 	color: #ff367a;
+}
+
+.logo-upload-container {
+	display: flex;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.image-upload-input {
+	margin-top: 10px;
+}
+
+.sample-image-container {
+	width: 150px;
+	height: 150px;
+	border: 1px dotted white;
+	margin: 20px 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+.sample-image-container img {
+	max-height: 100%;
+	width: auto;
+}
+
+.remove-logo {
+	float: left;
+	margin: 0;
 }

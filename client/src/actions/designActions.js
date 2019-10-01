@@ -8,7 +8,9 @@ import {
 	SET_FONT_WEIGHT,
 	SET_LINE_HEIGHT,
 	SET_TEXT_COLOR,
-	SAVE_LOGO
+	SAVE_LOGO,
+	SET_LOGO_SIZE,
+	SET_LOGO_ROTATION
 } from "./types";
 
 export const toggleModal = modalInfo => {
@@ -18,64 +20,89 @@ export const toggleModal = modalInfo => {
 	};
 };
 
-export const saveColor = (name, color) => {
+export const saveColor = (name, color, id) => {
 	var obj = {};
 	obj[name] = color;
 	return {
 		type: SET_DESIGN_COLOR,
-		payload: obj
+		payload: obj,
+		id: id
 	};
 };
 
-export const addText = (name, text) => {
+export const addText = (name, text, id) => {
 	var obj = {};
 	obj[name] = text;
 	return {
 		type: SET_DESIGN_FONT,
-		payload: text
+		payload: text,
+		id: id
 	};
 };
 
-export const setFontSize = size => {
+export const setFontSize = (size, id) => {
 	return {
 		type: SET_FONT_SIZE,
-		payload: size
+		payload: size,
+		id: id
 	};
 };
 
-export const setFontRotation = size => {
+export const setFontRotation = (size, id) => {
 	return {
 		type: SET_FONT_ROTATION,
-		payload: size
+		payload: size,
+		id: id
 	};
 };
 
-export const setFontWeight = size => {
+export const setFontWeight = (size, id) => {
 	return {
 		type: SET_FONT_WEIGHT,
-		payload: size
+		payload: size,
+		id: id
 	};
 };
 
-export const setLineHeight = size => {
+export const setLineHeight = (size, id) => {
 	return {
 		type: SET_LINE_HEIGHT,
-		payload: size
+		payload: size,
+		id: id
 	};
 };
 
-export const textColor = color => {
+export const textColor = (color, id) => {
 	return {
 		type: SET_TEXT_COLOR,
-		payload: color
+		payload: color,
+		id: id
 	};
 };
 
-export const saveLogo = logo => {
+export const saveLogo = (logo, id) => {
 	console.log(logo);
 	return {
 		type: SAVE_LOGO,
-		payload: logo
+		payload: logo,
+		id: id
+	};
+};
+
+export const setLogoSize = (size, id) => {
+	console.log(size);
+	return {
+		type: SET_LOGO_SIZE,
+		payload: size,
+		id: id
+	};
+};
+
+export const setLogoRotation = (size, id) => {
+	return {
+		type: SET_LOGO_ROTATION,
+		payload: size,
+		id: id
 	};
 };
 
