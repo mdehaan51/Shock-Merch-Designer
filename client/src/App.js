@@ -7,7 +7,8 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-import DesignLayout from "./components/DesignLayout.js";
+//import DesignLayout from "./components/DesignLayout.js";
+import DrawingDashboard from "./components/DrawingComponents/DrawingDashboard";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Admin from "./components/admin/Admin";
@@ -57,7 +58,11 @@ class App extends Component {
                 path="/admin-dashboard"
                 component={AdminDashboard}
               />
-              <PrivateRoute exact path="/dashboard" component={DesignLayout} />
+              <PrivateRoute
+                exact
+                path="/dashboard"
+                component={DrawingDashboard}
+              />
             </Switch>
           </div>
         </Router>
