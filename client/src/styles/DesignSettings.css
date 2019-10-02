@@ -30,6 +30,21 @@
 .text-editor-input {
 	text-align: center;
 }
+
+.chrome-picker {
+	width: 225px;
+	background: linear-gradient(#000000, #0f0f0f) !important;
+	border-radius: 2px;
+	box-shadow: none !important; /*rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;*/
+	box-sizing: initial;
+	font-family: Menlo;
+	color: white;
+	margin: 10px auto;
+}
+
+.chrome-picker input {
+	color: white !important;
+}
 #font-picker {
 	padding-top: 12px;
 }

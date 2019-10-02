@@ -43,6 +43,8 @@ class TextEditor extends Component {
 			data = this.props.design.side;
 		} else if (this.props.view === "bottom") {
 			data = this.props.design.bottom;
+		} else if (this.props.view === "top") {
+			data = this.props.design.top;
 		}
 		return (
 			<div className="design-details-container text-editor ">

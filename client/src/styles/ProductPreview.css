@@ -2,19 +2,31 @@
 	justify-content: center;
 	position: relative;
 	height: 700px;
+	min-width: 526px;
+}
+.text-boundary-container {
+	height: 100%;
+	width: 100%;
+	position: absolute;
 }
 
 .preview-img {
 	height: 100%;
 	width: auto;
-	/*top: 50%;*/
-	position: relative;
-	/*transform: translateY(-50%);*/
+	/* top: 50%; */
+	position: absolute;
+	/* transform: translateY(-50%); */
 	z-index: -1;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .text-preview-container {
 	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .logo-preview-container {
@@ -37,10 +49,12 @@
 	height: 364px;
 	width: 246px;
 	top: 40px;
-	left: 176px;
-	transform: rotate(20deg);
+	transform: translateX(-58%) rotate(20deg);
+	left: 50%;
 }
 
 .react-draggable {
 	display: inline-block;
+	height: 20px;
+	width: 20px;
 }

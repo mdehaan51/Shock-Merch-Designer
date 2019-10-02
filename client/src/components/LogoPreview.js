@@ -14,13 +14,13 @@ class TextPreview extends Component {
 	componentDidUpdate(prevProps) {}
 
 	render() {
-		let logo = this.props.design.logo;
+		let logo = this.props.data.logo;
 		let hidden = true;
 		if (logo !== "" && logo !== null) {
 			hidden = false;
 		}
-		let size = this.props.design.logoSize;
-		let rotation = this.props.design.logoRotation;
+		let size = this.props.data.logoSize;
+		let rotation = this.props.data.logoRotation;
 		let style = {
 			transform: `rotate(${rotation}deg) scale(${size})`
 		};

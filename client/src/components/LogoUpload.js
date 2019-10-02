@@ -24,7 +24,7 @@ class LogoUpload extends Component {
 	resetFile(event) {
 		event.preventDefault();
 		//this.setState({ file: null });
-		this.props.saveLogo(null);
+		this.props.saveLogo(null, this.props.view);
 	}
 	render() {
 		let data = "";
