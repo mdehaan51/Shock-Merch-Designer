@@ -7,8 +7,10 @@ import ProductPreview from "../ProductPreview";
 
 import DesignSettings from "../DesignSettings";
 import Navbar from "../NavBar.js";
-import DrawingPreview from "./DrawingPreview";
-import DrawingTools from "./DrawingTools";
+import BottomPreview from "./BottomPreview";
+import SidePreview from "./SidePreview";
+import SideDrawingTools from "./SideDrawingTools";
+import BottomDrawingTools from "./BottomDrawingTools";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
@@ -88,12 +90,33 @@ class DesignLayout extends Component {
 						Logout
 					</a>
 					<div className="row design-body">
-						<div className="col s6">
-							<DrawingPreview />
-						</div>
-						<div className="col s6">
-							<DrawingTools />
-						</div>
+						<Tabs>
+							<TabList className="main-tabs">
+								<Tab>Side of Sock</Tab>
+								<Tab>Bottom Of Sock</Tab>
+								<Tab>Top Of Sock</Tab>
+							</TabList>
+							<TabPanel>
+								<div className="col s6">
+									<SidePreview />
+								</div>
+								<div className="col s6">
+									<SideDrawingTools />
+								</div>
+							</TabPanel>
+							<TabPanel>
+								<div className="col s6">
+									<BottomPreview />
+								</div>
+								<div className="col s6">
+									<BottomDrawingTools />
+								</div>
+							</TabPanel>
+							<TabPanel>
+								<div className="col s6">Top Preview</div>
+								<div className="col s6">Top Tools</div>
+							</TabPanel>
+						</Tabs>
 					</div>
 				</div>
 			</div>

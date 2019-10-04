@@ -18,7 +18,6 @@ class SockImage extends Component {
 	componentDidMount() {
 		this.loadImage();
 		this.applyCache();
-		console.log("image has mounted");
 	}
 
 	handleClick = () => {
@@ -27,43 +26,51 @@ class SockImage extends Component {
 	};
 
 	componentDidUpdate(prevProps) {
-		console.log(this.props);
-		if (prevProps !== this.props) {
-			this.applyCache();
+		if (prevProps.src !== this.props.src) {
+			this.loadImage();
 		}
+	}
+
+	componentWillUnmount() {
+		this.image.removeEventListener("load", this.handleLoad);
 	}
 
 	loadImage() {
 		this.image = new window.Image();
 		this.image.src = this.props.src;
-		//this.image.addEventListener("load", this.handleLoad);
+		this.image.addEventListener("load", this.handleLoad);
+	}
+
+	handleLoad = () => {
+		// after setState react-konva will update canvas and redraw the layer
+		// because "image" property is changed
 		this.setState({
 			image: this.image
 		});
-		console.log("image created");
-		console.log(this.state.image);
-	}
+		// if you keep same image object during source updates
+		// you will have to update layer manually:
+		// this.imageNode.getLayer().batchDraw();
+	};
 
 	applyCache() {
-		console.log("image cached");
 		this.img.cache();
+		this.img.moveToBottom();
 		this.img.getLayer().batchDraw();
 	}
 
 	render() {
-		console.log(this.state.image);
 		return (
 			<Image
 				filters={[Konva.Filters.RGB]}
-				x={10}
+				x={100}
 				y={10}
-				width={800}
-				height={800}
+				width={this.props.width}
+				height={this.props.height}
 				image={this.state.image}
 				blue={this.props.blue}
 				red={this.props.red}
 				green={this.props.green}
-				shadowBlur={10}
+				shadowBlur={this.props.shadowBlur}
 				ref={node => {
 					this.img = node;
 				}}

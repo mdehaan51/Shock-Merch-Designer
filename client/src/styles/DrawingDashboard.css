@@ -2,3 +2,12 @@
 	position: absolute;
 	top: 0;
 }
+.shape-list {
+	display: flex;
+}
+
+.shape-list-item img {
+	width: 50%;
+	height: auto;
+	cursor: pointer;
+}

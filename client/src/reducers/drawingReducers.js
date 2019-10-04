@@ -6,16 +6,16 @@ import {
 
 const initialState = {
 	primary: {
-		hex: "#fffff",
-		red: 72,
-		green: 60,
-		blue: 133
+		hex: "#b91f1f",
+		red: 185,
+		green: 31,
+		blue: 31
 	},
 	secondary: {
-		hex: "#fffff",
-		red: 72,
-		green: 60,
-		blue: 133
+		hex: "#333fb4",
+		red: 51,
+		green: 63,
+		blue: 180
 	}
 };
 
