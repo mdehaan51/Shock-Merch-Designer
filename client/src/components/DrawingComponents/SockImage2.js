@@ -23,7 +23,7 @@ const SockImage2 = ({ width, height, red, blue, green, src }) => {
 	return (
 		<Image
 			filters={[Konva.Filters.RGB]}
-			x={100}
+			x={25}
 			y={10}
 			width={width}
 			height={height}
@@ -31,9 +31,7 @@ const SockImage2 = ({ width, height, red, blue, green, src }) => {
 			blue={blue}
 			red={red}
 			green={green}
-			//shadowBlur={shadowBlur}
 			ref={imageRef}
-			//onClick={this.handleClick}
 		/>
 	);
 };

@@ -5,9 +5,16 @@
 .shape-list {
 	display: flex;
 }
+.shape-list-item {
+	width: 30%;
+}
 
 .shape-list-item img {
 	width: 50%;
 	height: auto;
 	cursor: pointer;
+}
+
+.konvajs-content {
+	margin: auto;
 }

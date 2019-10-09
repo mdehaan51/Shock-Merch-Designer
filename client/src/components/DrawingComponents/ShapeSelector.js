@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+
 import ShapeList from "./ShapeList.js";
+
+import { ChromePicker } from "react-color";
+
+import { setShapeColor, addShape } from "../../actions/drawingActions";
+import { connect } from "react-redux";
 
 class ShapeSelector extends Component {
 	constructor(props) {
@@ -8,23 +14,49 @@ class ShapeSelector extends Component {
 		this.state = {};
 	}
 
+	onChangeCompleteShape = (color, event) => {
+		console.log(color);
+		this.props.setShapeColor(color);
+	};
+
+	addShape = (src, name) => {
+		this.props.addShape(src, name);
+	};
+
 	render() {
 		return (
 			<div className="shape-list-container">
 				<h4>Select A Shape</h4>
-				<div className="shape-list row">
+				<div className="shape-list">
 					{ShapeList.map((item, id) => {
-						console.log(item);
 						return (
-							<div key={id} className="shape-list-item col s4">
-								<img src={item.src} />
+							<div key={id} className="shape-list-item">
+								<img
+									src={item.src}
+									onClick={() =>
+										this.addShape(item.src, item.name)
+									}
+								/>
 							</div>
 						);
 					})}
+				</div>
+				<div className="shape-color-picker">
+					<ChromePicker
+						color={this.props.drawing.shape.hex}
+						onChangeComplete={this.onChangeCompleteShape}
+					/>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default ShapeSelector;
+const mapStateToProps = state => ({
+	drawing: state.drawing
+});
+
+export default connect(
+	mapStateToProps,
+	{ setShapeColor, addShape }
+)(ShapeSelector);

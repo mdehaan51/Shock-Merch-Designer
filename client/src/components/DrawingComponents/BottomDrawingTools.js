@@ -5,6 +5,7 @@ import { Stage, Layer, Rect, Text } from "react-konva";
 import ColorSelect from "./ColorPicker";
 import TextEditor from "./TextEditor";
 import ShapeSelector from "./ShapeSelector";
+import ImageUpload from "./ImageUpload";
 
 import Konva from "konva";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -35,17 +36,24 @@ class BottomDrawingTools extends Component {
 		return (
 			<Tabs>
 				<TabList>
-					<Tab>Add Text</Tab>
-					<Tab>Add Shapes</Tab>
-					<Tab>Add Logo</Tab>
+					<Tab style={{ width: "25%" }}>Add Text</Tab>
+					<Tab style={{ width: "25%" }}>Change Color</Tab>
+					<Tab style={{ width: "25%" }}>Add Shapes</Tab>
+					<Tab style={{ width: "25%" }}>Add Logo</Tab>
 				</TabList>
 				<TabPanel>
 					<TextEditor />
 				</TabPanel>
 				<TabPanel>
+					<ColorSelect />
+				</TabPanel>
+				<TabPanel>
 					<ShapeSelector />
 				</TabPanel>
-				<TabPanel>Image</TabPanel>
+				<TabPanel>
+					Image
+					<ImageUpload />
+				</TabPanel>
 			</Tabs>
 		);
 	}

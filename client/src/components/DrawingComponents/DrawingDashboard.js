@@ -9,8 +9,10 @@ import DesignSettings from "../DesignSettings";
 import Navbar from "../NavBar.js";
 import BottomPreview from "./BottomPreview";
 import SidePreview from "./SidePreview";
+import TopPreview from "./TopPreview";
 import SideDrawingTools from "./SideDrawingTools";
 import BottomDrawingTools from "./BottomDrawingTools";
+import TopDrawingTools from "./TopDrawingTools";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
@@ -113,8 +115,12 @@ class DesignLayout extends Component {
 								</div>
 							</TabPanel>
 							<TabPanel>
-								<div className="col s6">Top Preview</div>
-								<div className="col s6">Top Tools</div>
+								<div className="col s6">
+									<TopPreview />
+								</div>
+								<div className="col s6">
+									<TopDrawingTools />
+								</div>
 							</TabPanel>
 						</Tabs>
 					</div>

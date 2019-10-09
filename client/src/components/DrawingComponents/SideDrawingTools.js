@@ -4,6 +4,7 @@ import { Stage, Layer, Rect, Text } from "react-konva";
 
 import ColorSelect from "./ColorPicker";
 import TextEditor from "./TextEditor";
+import ImageUpload from "./ImageUpload";
 
 import Konva from "konva";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -44,7 +45,10 @@ class SideDrawingTools extends Component {
 				<TabPanel>
 					<ColorSelect />
 				</TabPanel>
-				<TabPanel>Image</TabPanel>
+				<TabPanel>
+					Image
+					<ImageUpload />
+				</TabPanel>
 			</Tabs>
 		);
 	}

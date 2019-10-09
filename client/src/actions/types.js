@@ -20,6 +20,15 @@ export const SET_LOGO_ROTATION = "SET_LOGO_ROTATION";
 //DrawingActions
 export const SET_PRIMARY_SOCK_COLOR = "SET_PRIMARY_SOCK_COLOR";
 export const SET_SECONDARY_SOCK_COLOR = "SET_SECONDARY_SOCK_COLOR";
+export const ADD_SHAPE = "ADD_SHAPE";
+export const UPDATE_SHAPES = "UPDATE_SHAPES";
+export const SET_SHAPE_COLOR = "SET_SHAPE_COLOR";
+export const ADD_TEXT = "ADD_TEXT";
+export const UPDATE_SIDE_TEXT = "UPDATE_SIDE_TEXT";
+export const SELECT_TEXT = "SELECT_TEXT";
+export const SAVE_IMAGE = "SAVE_IMAGE";
+export const UPDATE_IMAGES = "UPDATE_IMAGES";
+export const SELECT_ITEM = "SELECT_ITEM";
 
 //Grid Actions
 export const SET_GRID_SIZE = "SET_GRID_SIZE";

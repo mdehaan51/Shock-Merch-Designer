@@ -9,48 +9,16 @@ import SockImage2 from "./SockImage2";
 import { Socks } from "./constants";
 import SquareElement from "./TextElement";
 import ShapeElement from "./ShapeElement";
+import { addTextNode } from "./TextNode";
 
+import { updateShapes } from "../../actions/drawingActions";
 import { connect } from "react-redux";
 
 class BottomPreview extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputShape: [
-				{
-					x: 10,
-					y: 10,
-					width: 100,
-					height: 100,
-					//fill: "red",
-					id: "circle1"
-				},
-				{
-					x: 20,
-					y: 20,
-					width: 100,
-					height: 100,
-					//fill: "red",
-					id: "circle2"
-				},
-				{
-					x: 30,
-					y: 30,
-					width: 100,
-					height: 100,
-					//fill: "red",
-					id: "circle3"
-				},
-				{
-					x: 40,
-					y: 40,
-					width: 100,
-					height: 100,
-					//fill: "red",
-					id: "circle4"
-				}
-			],
-
+			inputShapes: [],
 			inputList: [
 				{
 					x: 10,
@@ -65,18 +33,31 @@ class BottomPreview extends Component {
 		};
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.drawing.inputShapes !== this.props.drawing.inputShapes) {
+			let newItem = this.props.drawing.inputShapes.slice(-1)[0];
+			//this.props.updateShapes(newItem);
+			this.setState({
+				inputShapes: [...this.state.inputShapes, newItem]
+			});
+		}
+	}
+
 	render() {
 		// Stage is a div container
 		// Layer is actual canvas element (so you may have several canvases in the stage)
 		// And then we have canvas shapes inside the Layer
-		let primary = this.props.drawing.primary;
-		let secondary = this.props.drawing.secondary;
+		const primary = this.props.drawing.primary;
+		const secondary = this.props.drawing.secondary;
+		const shape = this.props.drawing.shape;
+		const shapeList = this.props.drawing.inputShapes;
+
 		return (
 			<div>
 				<div className="primary-color">
 					<Stage
-						width={800}
-						height={800}
+						width={600}
+						height={750}
 						onMouseDown={e => {
 							// deselect when clicked on empty area
 							const clickedOnEmpty =
@@ -110,28 +91,45 @@ class BottomPreview extends Component {
 								green={secondary.green}
 								src="images/sockbottomheeltoe.png"
 							/>
-							{this.state.inputShape.map((data, id) => {
-								console.log(data);
+							{shapeList.map((data, id) => {
 								return (
 									<ShapeElement
 										key={id}
-										url="images/Circle.png"
+										url={data.src}
+										blue={shape.blue}
+										red={shape.red}
+										green={shape.green}
+										hex={shape.hex}
 										shapeProps={data}
+										x={data.x}
+										y={data.y}
 										isSelected={
 											data.id === this.state.selectedShape
 										}
 										onSelect={() => {
-											console.log(data.id);
 											this.setState({
 												selectedShape: data.id
 											});
+											/*let id = this.state.selectedShape;
+											let inputShapes = this.state.inputShapes.slice();
+											let item = inputShapes.find(
+												i => i.id === id
+											);
+											let index = inputShapes.indexOf(
+												item
+											);
+											inputShapes.splice(index, 1);
+											inputShapes.push(item);
+											this.setState({
+												inputShapes
+											});*/
 										}}
 										onChange={newAttrs => {
-											const inputs = this.state.inputShape.slice();
+											const inputs = this.props.drawing.inputShapes.slice();
+											console.log(inputs);
+											console.log(newAttrs);
 											inputs[id] = newAttrs;
-											this.setState({
-												inputShape: inputs
-											});
+											this.props.updateShapes(inputs);
 										}}
 									/>
 								);
@@ -160,4 +158,7 @@ const mapStateToProps = state => ({
 	drawing: state.drawing
 });
 
-export default connect(mapStateToProps)(BottomPreview);
+export default connect(
+	mapStateToProps,
+	{ updateShapes }
+)(BottomPreview);
