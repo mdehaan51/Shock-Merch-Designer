@@ -13,6 +13,14 @@ import {
 	setPrimarySockColor,
 	setSecondarySockColor
 } from "../../actions/drawingActions";
+import {
+	addText,
+	updateText,
+	selectText,
+	addImage,
+	updateImages,
+	selectImage
+} from "../../actions/topActions";
 import { connect } from "react-redux";
 
 class TopDrawingTools extends Component {
@@ -29,9 +37,32 @@ class TopDrawingTools extends Component {
 		console.log(color);
 		this.props.setSecondarySockColor(color);
 	};
+	getSelectedItem = (item, type) => {
+		if (type == "text") {
+			let allItems = this.props.top.text;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		} else if (type == "image") {
+			let allItems = this.props.top.images;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		}
+	};
 
 	render() {
 		let color = this.props.drawing.primary.hex;
+		let selectedText = this.getSelectedItem(
+			this.props.top.selectedItem,
+			"text"
+		);
+		let selectedImage = this.getSelectedItem(
+			this.props.top.selectedItem,
+			"image"
+		);
 		return (
 			<Tabs>
 				<TabList>
@@ -40,23 +71,42 @@ class TopDrawingTools extends Component {
 					<Tab>Add Logo</Tab>
 				</TabList>
 				<TabPanel>
-					<TextEditor />
+					<TextEditor
+						data={this.props.top.text}
+						addText={this.props.addText}
+						updateText={this.props.updateText}
+						selectedText={selectedText}
+					/>
 				</TabPanel>
 				<TabPanel>
 					<ColorSelect />
 				</TabPanel>
-				<TabPanel>Image</TabPanel>
-				<ImageUpload />
+				<TabPanel>
+					<ImageUpload
+						saveImage={this.props.addImage}
+						selectedImage={selectedImage}
+					/>
+				</TabPanel>
 			</Tabs>
 		);
 	}
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	drawing: state.drawing,
+	top: state.top
 });
 
 export default connect(
 	mapStateToProps,
-	{ setPrimarySockColor, setSecondarySockColor }
+	{
+		setPrimarySockColor,
+		setSecondarySockColor,
+		addText,
+		updateText,
+		selectText,
+		addImage,
+		updateImages,
+		selectImage
+	}
 )(TopDrawingTools);

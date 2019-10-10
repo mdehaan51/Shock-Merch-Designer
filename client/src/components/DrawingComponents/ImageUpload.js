@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 //import LogoSizeSelect from "./LogoSizeSelect";
 
-import { saveImage } from "../../actions/drawingActions";
+import { addImage } from "../../actions/sideActions";
 import { connect } from "react-redux";
 
 class ImageUpload extends Component {
@@ -13,13 +13,7 @@ class ImageUpload extends Component {
 		this.resetFile = this.resetFile.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
-		if (prevProps !== this.props) {
-			this.setState({
-				image: this.props.drawing.sideImages[0].image
-			});
-		}
-	}
+	componentDidUpdate(prevProps) {}
 	onChange(event) {
 		if (event.target.files[0]) {
 			this.props.saveImage(URL.createObjectURL(event.target.files[0]));
@@ -32,47 +26,30 @@ class ImageUpload extends Component {
 		this.props.saveImage(null, this.props.view);
 	}
 	render() {
-		let data = this.props.drawing.sideImages[0];
+		//let data = this.props.drawing.sideImages[0];
 		return (
-			<div className="logo-upload-container row">
-				<div className="col s5 offset-s2">
-					<label>Upload A File</label>
+			<div className="logo-upload-container">
+				<div className="row">
+					<div className="col s5">
+						<label>Add New Image</label>
 
-					<input
-						className="image-upload-input"
-						type="file"
-						onChange={this.onChange}
-						placeholder="Awaiting Upload"
-					/>
+						<input
+							className="image-upload-input "
+							type="file"
+							onChange={this.onChange}
+							placeholder="Awaiting Upload"
+						/>
 
-					<div className="sample-image-container">
-						<img src={this.state.image} />
+						{this.state.image && (
+							<button
+								className="remove-logo button hoverable"
+								onClick={this.resetFile}
+							>
+								Remove Image
+							</button>
+						)}
 					</div>
-					{this.state.image && (
-						<button
-							className="remove-logo button hoverable"
-							onClick={this.resetFile}
-						>
-							Remove File
-						</button>
-					)}
-				</div>
-
-				<div className="col s5">
-					<label>Logo Size</label>
-					{/*<LogoSizeSelect
-						unit="x"
-						type="LogoSize"
-						data={data}
-						view={this.props.view}
-					/>*/}
-					<label>Logo Rotation</label>
-					{/*<LogoSizeSelect
-						unit="deg"
-						type="rotation"
-						data={data}
-						view={this.props.view}
-					/>*/}
+					<p>Or Select Existing Image to Edit</p>
 				</div>
 			</div>
 		);
@@ -80,10 +57,13 @@ class ImageUpload extends Component {
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	drawing: state.drawing,
+	side: state.side,
+	bottom: state.bottom,
+	top: state.top
 });
 
 export default connect(
 	mapStateToProps,
-	{ saveImage }
+	{ addImage }
 )(ImageUpload);

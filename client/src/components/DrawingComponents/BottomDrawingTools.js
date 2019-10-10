@@ -14,6 +14,17 @@ import {
 	setPrimarySockColor,
 	setSecondarySockColor
 } from "../../actions/drawingActions";
+import {
+	setShapeColor,
+	addShape,
+	updateShapes,
+	addText,
+	updateText,
+	selectText,
+	addImage,
+	updateImages,
+	selectImage
+} from "../../actions/bottomActions";
 import { connect } from "react-redux";
 
 class BottomDrawingTools extends Component {
@@ -31,18 +42,47 @@ class BottomDrawingTools extends Component {
 		this.props.setSecondarySockColor(color);
 	};
 
+	getSelectedItem = (item, type) => {
+		if (type == "text") {
+			let allItems = this.props.bottom.text;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		} else if (type == "image") {
+			let allItems = this.props.bottom.images;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		}
+	};
+
 	render() {
 		let color = this.props.drawing.primary.hex;
+		let selectedText = this.getSelectedItem(
+			this.props.bottom.selectedItem,
+			"text"
+		);
+		let selectedImage = this.getSelectedItem(
+			this.props.bottom.selectedItem,
+			"image"
+		);
 		return (
 			<Tabs>
 				<TabList>
 					<Tab style={{ width: "25%" }}>Add Text</Tab>
 					<Tab style={{ width: "25%" }}>Change Color</Tab>
-					<Tab style={{ width: "25%" }}>Add Shapes</Tab>
+					<Tab style={{ width: "25%" }}>Add Grip Pads</Tab>
 					<Tab style={{ width: "25%" }}>Add Logo</Tab>
 				</TabList>
 				<TabPanel>
-					<TextEditor />
+					<TextEditor
+						data={this.props.bottom.text}
+						addText={this.props.addText}
+						updateText={this.props.updateText}
+						selectedText={selectedText}
+					/>
 				</TabPanel>
 				<TabPanel>
 					<ColorSelect />
@@ -51,8 +91,10 @@ class BottomDrawingTools extends Component {
 					<ShapeSelector />
 				</TabPanel>
 				<TabPanel>
-					Image
-					<ImageUpload />
+					<ImageUpload
+						saveImage={this.props.addImage}
+						selectedImage={selectedImage}
+					/>
 				</TabPanel>
 			</Tabs>
 		);
@@ -60,10 +102,23 @@ class BottomDrawingTools extends Component {
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	drawing: state.drawing,
+	bottom: state.bottom
 });
 
 export default connect(
 	mapStateToProps,
-	{ setPrimarySockColor, setSecondarySockColor }
+	{
+		setPrimarySockColor,
+		setSecondarySockColor,
+		setShapeColor,
+		addShape,
+		updateShapes,
+		addText,
+		updateText,
+		selectText,
+		addImage,
+		updateImages,
+		selectImage
+	}
 )(BottomDrawingTools);

@@ -6,7 +6,7 @@ import { CirclePicker } from "react-color";
 
 import FontSizeSelect from "./FontSizeSelect";
 
-import { addText, textColor } from "../actions/designActions";
+import { addText, textColor } from "../actions/sideActions";
 import { connect } from "react-redux";
 
 import "react-tabs/style/react-tabs.css";
@@ -124,10 +124,13 @@ class TextEditor extends Component {
 }
 
 const mapStateToProps = state => ({
-	design: state.design
+	design: state.design,
+	side: state.side,
+	bottom: state.bottom,
+	top: state.top
 });
 
 export default connect(
 	mapStateToProps,
-	{ addText, textColor }
+	{ addText }
 )(TextEditor);

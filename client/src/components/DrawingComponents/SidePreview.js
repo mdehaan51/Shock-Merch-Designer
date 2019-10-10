@@ -13,10 +13,13 @@ import { addTextNode } from "./TextNode";
 import ImageElement from "./ImageElement";
 
 import {
-	updateSideText,
+	addText,
+	updateText,
 	selectText,
-	updateImages
-} from "../../actions/drawingActions";
+	addImage,
+	updateImages,
+	selectImage
+} from "../../actions/sideActions";
 
 import { connect } from "react-redux";
 
@@ -36,31 +39,21 @@ class SidePreview extends Component {
 		// And then we have canvas shapes inside the Layer
 		const primary = this.props.drawing.primary;
 		const secondary = this.props.drawing.secondary;
-		const sideText = this.props.drawing.sideText;
-		const imageList = this.props.drawing.sideImages;
+		const sideText = this.props.side.text;
+		const imageList = this.props.side.images;
 
 		return (
 			<div>
 				<div className="primary-color">
-					<Stage
-						ref={this.stageRef}
-						width={600}
-						height={750}
-						onMouseDown={e => {
-							// deselect when clicked on empty area
-							const clickedOnEmpty =
-								e.target === e.target.getStage();
-							if (clickedOnEmpty) {
+					<Stage ref={this.stageRef} width={600} height={750}>
+						<Layer
+							onMouseDown={e => {
 								this.setState({
-									selectedShape: null
+									selectedShape: ""
 								});
-							}
-						}}
-					>
-						<Layer>
-							{/*<Portal>*/}
-
-							{/*<Portal>*/}
+								this.props.selectText("");
+							}}
+						>
 							<SockImage2
 								blue={primary.blue}
 								red={primary.red}
@@ -79,9 +72,9 @@ class SidePreview extends Component {
 								src="images/sideheeltoe.png"
 								shadowBlur={0}
 							/>
-
+						</Layer>
+						<Layer>
 							{sideText.map((data, id) => {
-								console.log(data);
 								return (
 									<TextElement
 										key={id}
@@ -98,37 +91,12 @@ class SidePreview extends Component {
 											this.setState({
 												selectedShape: data.id
 											});
-											/*let id = data.id;
-											let items = this.props.drawing
-												.sideText;
-											console.log(items);
-											let textItem = items.filter(obj => {
-												return obj.id === id;
-											});
-											console.log(textItem);
-											console.log(id);
-											let index = items.findIndex(
-												obj => obj.id === id
-											);
-											console.log(items);
-											items.splice(index, 1);
-											console.log(items);
-											items.push(textItem[0]);
-											console.log(items);
-											this.props.updateSideText(items);
-											/*let textItems = this.props.drawing
-												.sideText;
-											let textDetails = textItems.filter(
-												obj => {
-													return obj.id === data.id;
-												}
-											);
-											this.props.selectText(textDetails);*/
+											this.props.selectText(data.id);
 										}}
 										onChange={newAttrs => {
-											const inputs = this.props.drawing.sideText.slice();
+											const inputs = this.props.side.text.slice();
 											inputs[id] = newAttrs;
-											this.props.updateSideText(inputs);
+											this.props.updateText(inputs);
 										}}
 									/>
 								);
@@ -149,6 +117,7 @@ class SidePreview extends Component {
 											this.setState({
 												selectedShape: data.id
 											});
+											this.props.selectImage(data.id);
 											/*let id = this.state.selectedShape;
 											let inputShapes = this.state.inputShapes.slice();
 											let item = inputShapes.find(
@@ -164,7 +133,7 @@ class SidePreview extends Component {
 											});*/
 										}}
 										onChange={newAttrs => {
-											const inputs = this.props.drawing.sideImages.slice();
+											const inputs = this.props.side.images.slice();
 											console.log(inputs);
 											console.log(newAttrs);
 											inputs[id] = newAttrs;
@@ -176,18 +145,6 @@ class SidePreview extends Component {
 						</Layer>
 					</Stage>
 				</div>
-				{/*<div className="secondary-color">
-					<Stage width={800} height={800}>
-						<Layer>
-							<SockImage
-								blue={color.blue}
-								red={color.red}
-								green={color.green}
-								src={null}
-							/>
-						</Layer>
-					</Stage>
-				</div>*/}
 			</div>
 		);
 	}
@@ -200,5 +157,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ updateSideText, selectText, updateImages }
+	{ addText, updateText, selectText, addImage, updateImages, selectImage }
 )(SidePreview);

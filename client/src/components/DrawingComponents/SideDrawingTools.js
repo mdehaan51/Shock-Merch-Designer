@@ -13,6 +13,14 @@ import {
 	setPrimarySockColor,
 	setSecondarySockColor
 } from "../../actions/drawingActions";
+import {
+	addText,
+	updateText,
+	selectText,
+	addImage,
+	updateImages,
+	selectImage
+} from "../../actions/sideActions";
 import { connect } from "react-redux";
 
 class SideDrawingTools extends Component {
@@ -20,6 +28,7 @@ class SideDrawingTools extends Component {
 		super(props);
 		this.state = {};
 	}
+
 	onChangeCompletePrimary = (color, event) => {
 		console.log(color);
 		this.props.setPrimarySockColor(color);
@@ -30,24 +39,55 @@ class SideDrawingTools extends Component {
 		this.props.setSecondarySockColor(color);
 	};
 
+	getSelectedItem = (item, type) => {
+		if (type == "text") {
+			let allItems = this.props.side.text;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		} else if (type == "image") {
+			let allItems = this.props.side.images;
+			let itemDetails = allItems.filter(obj => {
+				return obj.id === item;
+			});
+			return itemDetails;
+		}
+	};
+
 	render() {
 		let color = this.props.drawing.primary.hex;
+		let selectedText = this.getSelectedItem(
+			this.props.side.selectedItem,
+			"text"
+		);
+		let selectedImage = this.getSelectedItem(
+			this.props.side.selectedItem,
+			"image"
+		);
 		return (
 			<Tabs>
 				<TabList>
 					<Tab>Add Text</Tab>
 					<Tab>Change Color</Tab>
-					<Tab>Add Logo</Tab>
+					<Tab>Add Image</Tab>
 				</TabList>
 				<TabPanel>
-					<TextEditor />
+					<TextEditor
+						data={this.props.side.text}
+						addText={this.props.addText}
+						updateText={this.props.updateText}
+						selectedText={selectedText}
+					/>
 				</TabPanel>
 				<TabPanel>
 					<ColorSelect />
 				</TabPanel>
 				<TabPanel>
-					Image
-					<ImageUpload />
+					<ImageUpload
+						saveImage={this.props.addImage}
+						selectedImage={selectedImage}
+					/>
 				</TabPanel>
 			</Tabs>
 		);
@@ -55,10 +95,20 @@ class SideDrawingTools extends Component {
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	drawing: state.drawing,
+	side: state.side
 });
 
 export default connect(
 	mapStateToProps,
-	{ setPrimarySockColor, setSecondarySockColor }
+	{
+		setPrimarySockColor,
+		setSecondarySockColor,
+		addText,
+		updateText,
+		selectText,
+		addImage,
+		updateImages,
+		selectImage
+	}
 )(SideDrawingTools);

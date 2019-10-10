@@ -20,15 +20,33 @@ export const SET_LOGO_ROTATION = "SET_LOGO_ROTATION";
 //DrawingActions
 export const SET_PRIMARY_SOCK_COLOR = "SET_PRIMARY_SOCK_COLOR";
 export const SET_SECONDARY_SOCK_COLOR = "SET_SECONDARY_SOCK_COLOR";
+
+//Bottom Sock Actions
 export const ADD_SHAPE = "ADD_SHAPE";
 export const UPDATE_SHAPES = "UPDATE_SHAPES";
 export const SET_SHAPE_COLOR = "SET_SHAPE_COLOR";
-export const ADD_TEXT = "ADD_TEXT";
+export const ADD_BOTTOM_TEXT = "ADD_BOTTOM_TEXT";
+export const UPDATE_BOTTOM_TEXT = "UPDATE_BOTTOM_TEXT";
+export const SELECT_BOTTOM_TEXT = "SELECT_BOTTOM_TEXT";
+export const ADD_BOTTOM_IMAGE = "SAVE_BOTTOM_IMAGE";
+export const UPDATE_BOTTOM_IMAGES = "UPDATE_BOTTOM_IMAGES";
+export const SELECT_BOTTOM_IMAGE = "SELECT_BOTTOM_IMAGE";
+
+//Side Sock Actions
+export const ADD_SIDE_TEXT = "ADD_SIDE_TEXT";
 export const UPDATE_SIDE_TEXT = "UPDATE_SIDE_TEXT";
-export const SELECT_TEXT = "SELECT_TEXT";
-export const SAVE_IMAGE = "SAVE_IMAGE";
-export const UPDATE_IMAGES = "UPDATE_IMAGES";
-export const SELECT_ITEM = "SELECT_ITEM";
+export const SELECT_SIDE_TEXT = "SELECT_SIDE_TEXT";
+export const ADD_SIDE_IMAGE = "ADD_SIDE_IMAGE";
+export const UPDATE_SIDE_IMAGES = "UPDATE_SIDE_IMAGES";
+export const SELECT_SIDE_IMAGE = "SELECT_SIDE_IMAGE";
+
+//Top Sock Actions
+export const ADD_TOP_TEXT = "ADD_TOP_TEXT";
+export const UPDATE_TOP_TEXT = "UPDATE_TOP_TEXT";
+export const SELECT_TOP_TEXT = "SELECT_TOP_TEXT";
+export const ADD_TOP_IMAGE = "ADD_TOP_IMAGE";
+export const UPDATE_TOP_IMAGES = "UPDATE_TOP_IMAGES";
+export const SELECT_TOP_IMAGE = "SELECT_TOP_IMAGE";
 
 //Grid Actions
 export const SET_GRID_SIZE = "SET_GRID_SIZE";

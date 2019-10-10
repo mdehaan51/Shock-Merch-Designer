@@ -9,9 +9,21 @@ import SockImage2 from "./SockImage2";
 import { Socks } from "./constants";
 import SquareElement from "./TextElement";
 import ShapeElement from "./ShapeElement";
-import { addTextNode } from "./TextNode";
 
-import { updateShapes } from "../../actions/drawingActions";
+import TextElement from "./TextElement";
+import ImageElement from "./ImageElement";
+
+import {
+	setShapeColor,
+	addShape,
+	updateShapes,
+	addText,
+	updateText,
+	selectText,
+	addImage,
+	updateImages,
+	selectImage
+} from "../../actions/bottomActions";
 import { connect } from "react-redux";
 
 class BottomPreview extends Component {
@@ -49,8 +61,10 @@ class BottomPreview extends Component {
 		// And then we have canvas shapes inside the Layer
 		const primary = this.props.drawing.primary;
 		const secondary = this.props.drawing.secondary;
-		const shape = this.props.drawing.shape;
-		const shapeList = this.props.drawing.inputShapes;
+		const shape = this.props.bottom.shape;
+		const shapeList = this.props.bottom.shapes;
+		const bottomText = this.props.bottom.text;
+		const imageList = this.props.bottom.images;
 
 		return (
 			<div>
@@ -91,6 +105,101 @@ class BottomPreview extends Component {
 								green={secondary.green}
 								src="images/sockbottomheeltoe.png"
 							/>
+
+							{bottomText.map((data, id) => {
+								return (
+									<TextElement
+										key={id}
+										rotation={data.rotation}
+										x={data.x}
+										y={data.y}
+										text={data.text}
+										id={data.id}
+										textProps={data}
+										isSelected={
+											data.id === this.state.selectedShape
+										}
+										onSelect={() => {
+											this.setState({
+												selectedShape: data.id
+											});
+											this.props.selectText(data.id);
+											/*let id = data.id;
+											let items = this.props.drawing
+												.sideText;
+											console.log(items);
+											let textItem = items.filter(obj => {
+												return obj.id === id;
+											});
+											console.log(textItem);
+											console.log(id);
+											let index = items.findIndex(
+												obj => obj.id === id
+											);
+											console.log(items);
+											items.splice(index, 1);
+											console.log(items);
+											items.push(textItem[0]);
+											console.log(items);
+											this.props.updateSideText(items);
+											/*let textItems = this.props.drawing
+												.sideText;
+											let textDetails = textItems.filter(
+												obj => {
+													return obj.id === data.id;
+												}
+											);
+											this.props.selectText(textDetails);*/
+										}}
+										onChange={newAttrs => {
+											const inputs = this.props.bottom.text.slice();
+											inputs[id] = newAttrs;
+											this.props.updateText(inputs);
+										}}
+									/>
+								);
+							})}
+							{imageList.map((data, id) => {
+								console.log(data);
+								return (
+									<ImageElement
+										key={id}
+										url={data.src}
+										shapeProps={data}
+										x={data.x}
+										y={data.y}
+										isSelected={
+											data.id === this.state.selectedShape
+										}
+										onSelect={() => {
+											this.setState({
+												selectedShape: data.id
+											});
+											this.props.selectImage(data.id);
+											/*let id = this.state.selectedShape;
+											let inputShapes = this.state.inputShapes.slice();
+											let item = inputShapes.find(
+												i => i.id === id
+											);
+											let index = inputShapes.indexOf(
+												item
+											);
+											inputShapes.splice(index, 1);
+											inputShapes.push(item);
+											this.setState({
+												inputShapes
+											});*/
+										}}
+										onChange={newAttrs => {
+											const inputs = this.props.bottom.images.slice();
+											console.log(inputs);
+											console.log(newAttrs);
+											inputs[id] = newAttrs;
+											this.props.updateImages(inputs);
+										}}
+									/>
+								);
+							})}
 							{shapeList.map((data, id) => {
 								return (
 									<ShapeElement
@@ -125,7 +234,7 @@ class BottomPreview extends Component {
 											});*/
 										}}
 										onChange={newAttrs => {
-											const inputs = this.props.drawing.inputShapes.slice();
+											const inputs = this.props.bottom.shapes.slice();
 											console.log(inputs);
 											console.log(newAttrs);
 											inputs[id] = newAttrs;
@@ -155,10 +264,21 @@ class BottomPreview extends Component {
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	drawing: state.drawing,
+	bottom: state.bottom
 });
 
 export default connect(
 	mapStateToProps,
-	{ updateShapes }
+	{
+		setShapeColor,
+		addShape,
+		updateShapes,
+		addText,
+		updateText,
+		selectText,
+		addImage,
+		updateImages,
+		selectImage
+	}
 )(BottomPreview);

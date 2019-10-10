@@ -5,7 +5,7 @@ import ShapeList from "./ShapeList.js";
 
 import { ChromePicker } from "react-color";
 
-import { setShapeColor, addShape } from "../../actions/drawingActions";
+import { setShapeColor, addShape } from "../../actions/bottomActions";
 import { connect } from "react-redux";
 
 class ShapeSelector extends Component {
@@ -20,7 +20,7 @@ class ShapeSelector extends Component {
 	};
 
 	addShape = (src, name) => {
-		this.props.addShape(src, name);
+		this.props.addShape(src, name, "bottom");
 	};
 
 	render() {
@@ -43,7 +43,7 @@ class ShapeSelector extends Component {
 				</div>
 				<div className="shape-color-picker">
 					<ChromePicker
-						color={this.props.drawing.shape.hex}
+						color={this.props.bottom.shape.hex}
 						onChangeComplete={this.onChangeCompleteShape}
 					/>
 				</div>
@@ -53,7 +53,7 @@ class ShapeSelector extends Component {
 }
 
 const mapStateToProps = state => ({
-	drawing: state.drawing
+	bottom: state.bottom
 });
 
 export default connect(

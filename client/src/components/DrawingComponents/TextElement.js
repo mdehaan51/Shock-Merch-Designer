@@ -72,7 +72,7 @@ const TextElement = ({
 					//fontFamily="Anton"
 				/>
 			</Group>
-			{isSelected && <Transformer ref={trRef} />}
+			{isSelected && <Transformer ref={trRef} resizeEnabled={false} />}
 		</React.Fragment>
 	);
 };
