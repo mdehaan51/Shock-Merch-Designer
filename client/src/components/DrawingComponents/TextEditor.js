@@ -21,9 +21,49 @@ class TextEditor extends Component {
 				fill: "#ffffff",
 				stroke: ""
 			},
-			activated: false
+			activated: false,
+			selectedText: {}
 		};
 	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.selectedText !== this.props.selectedText) {
+			try {
+				console.log(this.props.selectedText[0].id);
+				let id = this.props.selectedText[0].id;
+				this.getSelectedText(id);
+			} catch (error) {
+				console.log(error);
+				console.log("id does not exist yet");
+			}
+		}
+	}
+
+	getSelectedText = id => {
+		let selectedItem;
+		switch (this.props.view) {
+			case "side":
+				selectedItem = this.props.side.text.find(
+					item => item.id === id
+				);
+				break;
+			case "bottom":
+				selectedItem = this.props.bottom.text.find(
+					item => item.id === id
+				);
+				break;
+			case "top":
+				selectedItem = this.props.top.text.find(item => item.id === id);
+				break;
+			default:
+				console.log("not yet");
+		}
+		this.setState({
+			selectedText: selectedItem,
+			text: selectedItem.text,
+			style: selectedItem.style
+		});
+	};
 
 	addFont = () => {
 		this.setState({
@@ -34,6 +74,33 @@ class TextEditor extends Component {
 	addText = () => {
 		console.log("text-added");
 		this.props.addText("Insert Text", this.state.style);
+	};
+
+	deleteText = () => {
+		let id = this.state.selectedText.id;
+		let objects;
+		switch (this.props.view) {
+			case "side":
+				objects = this.props.side.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			case "bottom":
+				objects = this.props.bottom.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			case "top":
+				objects = this.props.top.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			default:
+				console.log("not yet");
+		}
+
+		console.log(objects);
+		this.props.updateText(objects);
 	};
 
 	updateState = (key, value) => {
@@ -49,7 +116,7 @@ class TextEditor extends Component {
 	updateText = e => {
 		let style = this.state.style;
 		let text = this.state.text;
-		let id = this.props.selectedText[0].id;
+		let id = this.state.selectedText.id;
 		let data = this.props.data;
 
 		let index = data.findIndex(obj => obj.id === id);
@@ -66,9 +133,11 @@ class TextEditor extends Component {
 	};
 
 	render() {
-		let selectedText = this.props.selectedText[0];
+		//let selectedText = this.props.selectedText[0];
 		//if (!selectedText) return null;
-		console.log(selectedText);
+		//console.log(selectedText);
+		console.log(this.state.selectedText);
+		let selectedText = this.state.selectedText;
 		/*selectedText
 			? this.setState({
 					activated: true
@@ -79,15 +148,19 @@ class TextEditor extends Component {
 		return (
 			<div className="design-details-container text-editor ">
 				<div className="row">
-					<button
-						className="add-text-button button hoverable col offset-s1"
-						onClick={this.addText}
-					>
-						Add New Text
-					</button>
-					<p>Or Select Existing Text to Edit</p>
+					<div className="col s6">
+						<button
+							className="add-text-button button hoverable"
+							onClick={this.addText}
+						>
+							Add New Text
+						</button>
+					</div>
+					<div className="col s6">
+						Or Select Existing Text to Edit
+					</div>
 				</div>
-				{!selectedText ? null : (
+				{Object.keys(selectedText).length === 0 ? null : (
 					<React.Fragment>
 						<div className="row">
 							<div className="text input col s6">
@@ -95,7 +168,7 @@ class TextEditor extends Component {
 								<input
 									type="text"
 									className="text-editor-input apply-font"
-									defaultValue={selectedText.text}
+									value={this.state.text}
 									onChange={e =>
 										this.setState(
 											{
@@ -133,7 +206,7 @@ class TextEditor extends Component {
 							<div className="col s6">
 								<label>Choose Your Text Color</label>
 								<ChromePicker
-									color={this.state.style.fill}
+									color={this.state.selectedText.style.fill}
 									onChangeComplete={color =>
 										this.setState(
 											{
@@ -150,7 +223,7 @@ class TextEditor extends Component {
 							<div className="col s6">
 								<label>Choose Your Text Outline Color</label>
 								<ChromePicker
-									color={this.state.style.stroke}
+									color={this.state.selectedText.style.stroke}
 									onChangeComplete={color =>
 										this.setState(
 											{
@@ -183,30 +256,31 @@ class TextEditor extends Component {
 						</div>
 						<div className="row">
 							<div className="col s6">
-								<div className="row">
-									<div className="col s6">
-										<label>Font Size</label>
-										<input
-											type="number"
-											className="text-editor-input"
-											placeholder={
-												selectedText.style.fontSize
-											}
-											onChange={e =>
-												this.setState(
-													{
-														style: {
-															...this.state.style,
-															fontSize:
-																e.target.value
-														}
-													},
-													() => this.updateText()
-												)
-											}
-										/>
-									</div>
-								</div>
+								<label>Font Size</label>
+								<input
+									type="number"
+									className="text-editor-input"
+									value={this.state.style.fontSize}
+									onChange={e =>
+										this.setState(
+											{
+												style: {
+													...this.state.style,
+													fontSize: e.target.value
+												}
+											},
+											() => this.updateText()
+										)
+									}
+								/>
+							</div>
+							<div className="col s6">
+								<button
+									className="delete-text-button button hoverable"
+									onClick={this.deleteText}
+								>
+									Delete Text
+								</button>
 							</div>
 						</div>
 					</React.Fragment>

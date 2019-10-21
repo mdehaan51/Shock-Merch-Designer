@@ -5,7 +5,8 @@ import {
 	SELECT_SIDE_TEXT,
 	ADD_SIDE_IMAGE,
 	UPDATE_SIDE_IMAGES,
-	SELECT_SIDE_IMAGE
+	SELECT_SIDE_IMAGE,
+	GET_SELECTED_TEXT_DETAILS
 } from "./types";
 
 export const addText = (text, style) => {
@@ -27,6 +28,13 @@ export const updateText = items => {
 export const selectText = id => {
 	return {
 		type: SELECT_SIDE_TEXT,
+		id: id
+	};
+};
+
+export const getSelectedText = id => {
+	return {
+		type: GET_SELECTED_TEXT_DETAILS,
 		id: id
 	};
 };

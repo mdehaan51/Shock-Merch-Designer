@@ -48,7 +48,6 @@ const TextElement = ({
 					const node = shapeRef.current;
 					const scaleX = node.scaleX();
 					const scaleY = node.scaleY();
-					console.log(node);
 
 					// we will reset it back
 					node.scaleX(1);

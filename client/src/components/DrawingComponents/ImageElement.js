@@ -71,6 +71,7 @@ const ShapeElement = ({
 						...shapeProps,
 						x: node.x(),
 						y: node.y(),
+						rotation: node.rotation(),
 						width: node.width() * scaleX,
 						height: node.height() * scaleY
 					});

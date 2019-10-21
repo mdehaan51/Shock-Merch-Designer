@@ -78,6 +78,7 @@ class SideDrawingTools extends Component {
 						addText={this.props.addText}
 						updateText={this.props.updateText}
 						selectedText={selectedText}
+						view="side"
 					/>
 				</TabPanel>
 				<TabPanel>

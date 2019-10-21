@@ -9,7 +9,6 @@ import SockImage from "./SockImage";
 import SockImage2 from "./SockImage2";
 import { Socks } from "./constants";
 import TextElement from "./TextElement";
-import { addTextNode } from "./TextNode";
 import ImageElement from "./ImageElement";
 
 import {

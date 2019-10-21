@@ -19,7 +19,7 @@
 }
 
 .text-editor {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .circle-picker {
@@ -120,4 +120,8 @@
 .remove-logo {
 	float: left;
 	margin: 0;
+}
+
+.delete-text-button {
+	margin-top: 10px;
 }

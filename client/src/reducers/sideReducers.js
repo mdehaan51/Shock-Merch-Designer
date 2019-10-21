@@ -5,7 +5,8 @@ import {
 	SELECT_SIDE_TEXT,
 	ADD_SIDE_IMAGE,
 	UPDATE_SIDE_IMAGES,
-	SELECT_SIDE_IMAGE
+	SELECT_SIDE_IMAGE,
+	GET_SELECTED_TEXT_DETAILS
 } from "../actions/types";
 
 const initialState = {
@@ -38,8 +39,6 @@ export default function(state = initialState, action) {
 				]
 			};
 		case UPDATE_SIDE_TEXT:
-			console.log("reaching reducer");
-			console.log(action.items);
 			return {
 				...state,
 				text: action.items

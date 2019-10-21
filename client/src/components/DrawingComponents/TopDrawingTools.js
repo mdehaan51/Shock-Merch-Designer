@@ -76,6 +76,7 @@ class TopDrawingTools extends Component {
 						addText={this.props.addText}
 						updateText={this.props.updateText}
 						selectedText={selectedText}
+						view="top"
 					/>
 				</TabPanel>
 				<TabPanel>

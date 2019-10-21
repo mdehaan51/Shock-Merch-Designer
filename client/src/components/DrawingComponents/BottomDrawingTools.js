@@ -82,6 +82,7 @@ class BottomDrawingTools extends Component {
 						addText={this.props.addText}
 						updateText={this.props.updateText}
 						selectedText={selectedText}
+						view="bottom"
 					/>
 				</TabPanel>
 				<TabPanel>
