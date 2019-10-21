@@ -95,6 +95,7 @@ class BottomDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						view="bottom"
 					/>
 				</TabPanel>
 			</Tabs>

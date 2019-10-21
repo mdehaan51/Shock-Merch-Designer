@@ -33,7 +33,13 @@ class DesignLayout extends Component {
 		this.state = {};
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		window.onbeforeunload = e => {
+			console.log("Stop this");
+			e.preventDefault();
+			e.returnValue = "";
+		};
+	}
 
 	componentDidUpdate(prevProps, prevState) {}
 

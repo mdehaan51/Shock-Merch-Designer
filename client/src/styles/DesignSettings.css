@@ -125,3 +125,12 @@
 .delete-text-button {
 	margin-top: 10px;
 }
+
+.submit-button-row {
+	width: 100%;
+	padding: 0 5%;
+}
+
+.submit-button {
+	float: right;
+}

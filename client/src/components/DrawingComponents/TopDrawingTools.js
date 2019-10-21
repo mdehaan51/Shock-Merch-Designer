@@ -86,6 +86,7 @@ class TopDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						view="top"
 					/>
 				</TabPanel>
 			</Tabs>

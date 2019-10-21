@@ -33,8 +33,7 @@ class TextEditor extends Component {
 				let id = this.props.selectedText[0].id;
 				this.getSelectedText(id);
 			} catch (error) {
-				console.log(error);
-				console.log("id does not exist yet");
+				return;
 			}
 		}
 	}
@@ -72,7 +71,6 @@ class TextEditor extends Component {
 	};
 
 	addText = () => {
-		console.log("text-added");
 		this.props.addText("Insert Text", this.state.style);
 	};
 
@@ -96,10 +94,9 @@ class TextEditor extends Component {
 				});
 				break;
 			default:
-				console.log("not yet");
+				break;
 		}
 
-		console.log(objects);
 		this.props.updateText(objects);
 	};
 
@@ -121,7 +118,6 @@ class TextEditor extends Component {
 
 		let index = data.findIndex(obj => obj.id === id);
 		let item = data.splice(index, 1);
-		console.log(item);
 		item[0] = {
 			...item[0],
 			text: text,
@@ -133,18 +129,8 @@ class TextEditor extends Component {
 	};
 
 	render() {
-		//let selectedText = this.props.selectedText[0];
-		//if (!selectedText) return null;
-		//console.log(selectedText);
-		console.log(this.state.selectedText);
 		let selectedText = this.state.selectedText;
-		/*selectedText
-			? this.setState({
-					activated: true
-			  })
-			: this.setState({
-					activated: false
-			  });*/
+
 		return (
 			<div className="design-details-container text-editor ">
 				<div className="row">

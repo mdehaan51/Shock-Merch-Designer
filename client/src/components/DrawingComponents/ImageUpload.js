@@ -14,11 +14,64 @@ class ImageUpload extends Component {
 	}
 
 	componentDidUpdate(prevProps) {}
+
 	onChange(event) {
 		if (event.target.files[0]) {
+			console.log(event.target.files[0]);
 			this.props.saveImage(URL.createObjectURL(event.target.files[0]));
 		}
 	}
+
+	copyImage = () => {
+		let id = this.props.selectedImage[0].id;
+		let objects;
+		switch (this.props.view) {
+			case "side":
+				objects = this.props.side.images.find(function(obj) {
+					return obj.id === id;
+				});
+				break;
+			case "bottom":
+				objects = this.props.bottom.images.find(function(obj) {
+					return obj.id === id;
+				});
+				break;
+			case "top":
+				objects = this.props.top.images.find(function(obj) {
+					return obj.id === id;
+				});
+				break;
+			default:
+				break;
+		}
+		this.props.copyImage(objects);
+	};
+
+	deleteImage = () => {
+		let id = this.props.bottom.selectedItem;
+		let objects;
+		switch (this.props.view) {
+			case "side":
+				objects = this.props.side.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			case "bottom":
+				objects = this.props.bottom.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			case "top":
+				objects = this.props.top.text.filter(function(obj) {
+					return obj.id !== id;
+				});
+				break;
+			default:
+				break;
+		}
+
+		this.props.saveImage(objects);
+	};
 
 	resetFile(event) {
 		event.preventDefault();
@@ -50,6 +103,30 @@ class ImageUpload extends Component {
 						)}
 					</div>
 					<p>Or Select Existing Image to Edit</p>
+				</div>
+				<div className="row">
+					<div className="col s6">
+						<button
+							className="delete-text-button button hoverable"
+							onClick={this.copyImage}
+						>
+							Copy Image
+						</button>
+					</div>
+					<div className="col s6">
+						<button
+							className="delete-text-button button hoverable"
+							onClick={this.deleteImage}
+						>
+							Delete Image
+						</button>
+					</div>
+				</div>
+				<div className="row">
+					<p>For best results please do the following:</p>
+					<p>1) Only upload PNG, JPG, or AI files</p>
+					<p>2) Ensure your logo has a transparent background</p>
+					<p>3) Ensure uploaded logo is at least 150 dpi</p>
 				</div>
 			</div>
 		);

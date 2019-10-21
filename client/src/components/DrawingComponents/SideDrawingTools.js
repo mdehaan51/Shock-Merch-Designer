@@ -88,6 +88,7 @@ class SideDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						view="side"
 					/>
 				</TabPanel>
 			</Tabs>
