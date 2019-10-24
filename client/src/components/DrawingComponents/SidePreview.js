@@ -20,6 +20,8 @@ import {
 	selectImage
 } from "../../actions/sideActions";
 
+import { saveData } from "../../actions/drawingActions";
+
 import { connect } from "react-redux";
 
 class SidePreview extends Component {
@@ -29,7 +31,19 @@ class SidePreview extends Component {
 			textItems: [],
 			selectedShape: ""
 		};
-		const stageRef = React.createRef();
+		let stageRef = React.createRef();
+	}
+
+	componentWillUnmount() {
+		let sideURL = this.refs.sideStage.toDataURL();
+		this.props.saveData("side", sideURL);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.side !== this.props.side) {
+			let sideURL = this.refs.sideStage.toDataURL();
+			this.props.saveData("side", sideURL);
+		}
 	}
 
 	render() {
@@ -44,7 +58,7 @@ class SidePreview extends Component {
 		return (
 			<div>
 				<div className="primary-color">
-					<Stage ref={this.stageRef} width={600} height={750}>
+					<Stage ref="sideStage" width={600} height={750}>
 						<Layer
 							onMouseDown={e => {
 								this.setState({
@@ -101,7 +115,6 @@ class SidePreview extends Component {
 								);
 							})}
 							{imageList.map((data, id) => {
-								console.log(data);
 								return (
 									<ImageElement
 										key={id}
@@ -117,24 +130,10 @@ class SidePreview extends Component {
 												selectedShape: data.id
 											});
 											this.props.selectImage(data.id);
-											/*let id = this.state.selectedShape;
-											let inputShapes = this.state.inputShapes.slice();
-											let item = inputShapes.find(
-												i => i.id === id
-											);
-											let index = inputShapes.indexOf(
-												item
-											);
-											inputShapes.splice(index, 1);
-											inputShapes.push(item);
-											this.setState({
-												inputShapes
-											});*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.side.images.slice();
-											console.log(inputs);
-											console.log(newAttrs);
+
 											inputs[id] = newAttrs;
 											this.props.updateImages(inputs);
 										}}
@@ -156,5 +155,13 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ addText, updateText, selectText, addImage, updateImages, selectImage }
+	{
+		addText,
+		updateText,
+		selectText,
+		addImage,
+		updateImages,
+		selectImage,
+		saveData
+	}
 )(SidePreview);

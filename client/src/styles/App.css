@@ -206,7 +206,7 @@ input[type="number"] {
   border-radius: 2px;
   text-align: center;
   text-align-last: center;
-  margin: 0 5px 8px !important;
+  /*margin: 0 5px 8px !important;*/
   border: none;
   background-color: rgba(0, 0, 0, 0.5) !important;
   color: white;

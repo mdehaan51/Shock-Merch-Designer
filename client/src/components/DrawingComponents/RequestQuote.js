@@ -43,10 +43,9 @@ class DesignLayout extends Component {
 
 	componentDidUpdate(prevProps, prevState) {}
 
-	onLogoutClick = e => {
+	goBack = e => {
 		e.preventDefault();
-		this.props.history.push("/");
-		this.props.logoutUser(this.props.history);
+		this.props.history.push("/dashboard");
 	};
 
 	hideModal = e => {
@@ -90,29 +89,56 @@ class DesignLayout extends Component {
 						className="container-background"
 						src="images/background.jpg"
 					/>
-					<a
-						onClick={this.onLogoutClick}
-						className="logout-button "
-						href=""
-					>
-						Logout
+					<a onClick={this.goBack} className="logout-button " href="">
+						Go Back
 					</a>
 					<div className="row request-body">
 						<div className="col s12">
 							<h2>Request a Quote</h2>
 						</div>
+						<div className="col s6">
+							<h5>Give Us Some Details</h5>
+							<RequestForm />
+						</div>
 
 						<div className="col s6">
 							<div className="row request-images">
-								<img src="https://via.placeholder.com/300" />
+								<div className="image-container">
+									<h5>Side View</h5>
+									<img
+										src={
+											this.props.drawing.sideData === null
+												? "images/not-created.png"
+												: this.props.drawing.sideData
+										}
+										alt="Side Image"
+									/>
+								</div>
+								<div className="image-container">
+									<h5>Bottom View</h5>
+									<img
+										src={
+											this.props.drawing.bottomData ===
+											null
+												? "images/not-created.png"
+												: this.props.drawing.bottomData
+										}
+										alt="Bottom Image"
+									/>
+								</div>
+								<div className="image-container">
+									<h5>Top View</h5>
 
-								<img src="https://via.placeholder.com/300" />
-
-								<img src="https://via.placeholder.com/300" />
+									<img
+										src={
+											this.props.drawing.topData === null
+												? "images/not-created.png"
+												: this.props.drawing.topData
+										}
+										alt="Top Image"
+									/>
+								</div>
 							</div>
-						</div>
-						<div className="col s6">
-							<RequestForm />
 						</div>
 					</div>
 				</div>
@@ -123,7 +149,8 @@ class DesignLayout extends Component {
 
 const mapStateToProps = state => ({
 	auth: state.auth,
-	design: state.design
+	design: state.design,
+	drawing: state.drawing
 });
 
 export default connect(

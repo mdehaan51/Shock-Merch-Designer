@@ -8,7 +8,8 @@
 }
 
 .design-details-container label,
-.logo-upload-container label {
+.logo-upload-container label,
+.shape-list-container label {
 	font-weight: bold;
 	color: white;
 	font-size: 14px;
@@ -144,13 +145,50 @@
 	font-weight: bold;
 	text-shadow: 1px 1px 1px black;
 }
+.request-form {
+	margin-top: 25px;
+}
 
 .request-images {
-	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
+.request-body h5 {
+	overflow: hidden;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px black;
+}
+
+.image-container {
+	width: 45%;
+	display: inline-block;
+	float: left;
+}
+
 .request-images img {
+	max-height: 300px;
 	margin: 10px;
+}
+
+.shape-list-container h4 {
+	overflow: hidden;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px black;
+}
+
+.grip-img-upload {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.grip-img-upload label {
+	width: 100%;
+}
+
+.grip-img-upload img {
+	max-height: 100px;
 }

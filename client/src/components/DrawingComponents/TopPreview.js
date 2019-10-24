@@ -18,6 +18,8 @@ import {
 	selectImage
 } from "../../actions/topActions";
 
+import { saveData } from "../../actions/drawingActions";
+
 import { connect } from "react-redux";
 
 class TopPreview extends Component {
@@ -26,6 +28,16 @@ class TopPreview extends Component {
 		this.state = {
 			selectedShape: ""
 		};
+	}
+	componentWillUnmount() {
+		let sideURL = this.refs.topStage.toDataURL();
+		this.props.saveData("top", sideURL);
+	}
+	componentDidUpdate(prevProps) {
+		if (prevProps.side !== this.props.side) {
+			let sideURL = this.refs.topStage.toDataURL();
+			this.props.saveData("top", sideURL);
+		}
 	}
 
 	render() {
@@ -40,6 +52,7 @@ class TopPreview extends Component {
 			<div>
 				<div className="primary-color">
 					<Stage
+						ref="topStage"
 						width={600}
 						height={750}
 						onMouseDown={e => {
@@ -198,5 +211,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ updateText, selectText, updateImages, selectImage }
+	{ updateText, selectText, updateImages, selectImage, saveData }
 )(TopPreview);

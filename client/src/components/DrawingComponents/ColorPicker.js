@@ -29,7 +29,7 @@ class ColorSelect extends Component {
 	render() {
 		return (
 			<div>
-				PlaceHolder
+				Choose Your Sock Colors
 				<ChromePicker
 					color={this.props.drawing.primary.hex}
 					onChangeComplete={this.onChangeCompletePrimary}

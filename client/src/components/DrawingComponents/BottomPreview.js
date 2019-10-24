@@ -24,6 +24,9 @@ import {
 	updateImages,
 	selectImage
 } from "../../actions/bottomActions";
+
+import { saveData } from "../../actions/drawingActions";
+
 import { connect } from "react-redux";
 
 class BottomPreview extends Component {
@@ -43,6 +46,17 @@ class BottomPreview extends Component {
 			],
 			selectedShape: ""
 		};
+	}
+	componentWillUnmount() {
+		let sideURL = this.refs.bottomStage.toDataURL();
+		this.props.saveData("bottom", sideURL);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.side !== this.props.side) {
+			let sideURL = this.refs.bottomStage.toDataURL();
+			this.props.saveData("bottom", sideURL);
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -70,6 +84,7 @@ class BottomPreview extends Component {
 			<div>
 				<div className="primary-color">
 					<Stage
+						ref="bottomStage"
 						width={600}
 						height={750}
 						onMouseDown={e => {
@@ -85,10 +100,6 @@ class BottomPreview extends Component {
 						}}
 					>
 						<Layer>
-							{/*<Portal>*/}
-
-							{/*<Portal>*/}
-
 							<SockImage2
 								width={350}
 								height={699}
@@ -124,32 +135,6 @@ class BottomPreview extends Component {
 												selectedShape: data.id
 											});
 											this.props.selectText(data.id);
-											/*let id = data.id;
-											let items = this.props.drawing
-												.sideText;
-											console.log(items);
-											let textItem = items.filter(obj => {
-												return obj.id === id;
-											});
-											console.log(textItem);
-											console.log(id);
-											let index = items.findIndex(
-												obj => obj.id === id
-											);
-											console.log(items);
-											items.splice(index, 1);
-											console.log(items);
-											items.push(textItem[0]);
-											console.log(items);
-											this.props.updateSideText(items);
-											/*let textItems = this.props.drawing
-												.sideText;
-											let textDetails = textItems.filter(
-												obj => {
-													return obj.id === data.id;
-												}
-											);
-											this.props.selectText(textDetails);*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.bottom.text.slice();
@@ -175,19 +160,6 @@ class BottomPreview extends Component {
 												selectedShape: data.id
 											});
 											this.props.selectImage(data.id);
-											/*let id = this.state.selectedShape;
-											let inputShapes = this.state.inputShapes.slice();
-											let item = inputShapes.find(
-												i => i.id === id
-											);
-											let index = inputShapes.indexOf(
-												item
-											);
-											inputShapes.splice(index, 1);
-											inputShapes.push(item);
-											this.setState({
-												inputShapes
-											});*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.bottom.images.slice();
@@ -218,19 +190,6 @@ class BottomPreview extends Component {
 											this.setState({
 												selectedShape: data.id
 											});
-											/*let id = this.state.selectedShape;
-											let inputShapes = this.state.inputShapes.slice();
-											let item = inputShapes.find(
-												i => i.id === id
-											);
-											let index = inputShapes.indexOf(
-												item
-											);
-											inputShapes.splice(index, 1);
-											inputShapes.push(item);
-											this.setState({
-												inputShapes
-											});*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.bottom.shapes.slice();
@@ -278,6 +237,7 @@ export default connect(
 		selectText,
 		addImage,
 		updateImages,
-		selectImage
+		selectImage,
+		saveData
 	}
 )(BottomPreview);

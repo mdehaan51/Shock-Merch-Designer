@@ -6,12 +6,17 @@ import ShapeList from "./ShapeList.js";
 import { ChromePicker } from "react-color";
 
 import { setShapeColor, addShape } from "../../actions/bottomActions";
+
+import { saveData } from "../../actions/drawingActions";
+
 import { connect } from "react-redux";
 
 class ShapeSelector extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			img: null
+		};
 	}
 
 	onChangeCompleteShape = (color, event) => {
@@ -21,6 +26,20 @@ class ShapeSelector extends Component {
 
 	addShape = (src, name) => {
 		this.props.addShape(src, name, "bottom");
+	};
+
+	onUpload = e => {
+		let image = URL.createObjectURL(e.target.files[0]);
+		this.setState({
+			img: image
+		});
+		this.props.saveData("bottom", image);
+	};
+
+	resetFile = e => {
+		e.preventDefault();
+		this.setState({ img: null });
+		this.props.saveData("bottom", null);
 	};
 
 	render() {
@@ -47,16 +66,38 @@ class ShapeSelector extends Component {
 						onChangeComplete={this.onChangeCompleteShape}
 					/>
 				</div>
+				<div className="grip-img-upload">
+					<h4>Already have a grip design?</h4>
+					<label>Upload it here</label>
+
+					<input
+						className="image-upload-input "
+						type="file"
+						onChange={this.onUpload}
+						placeholder="Awaiting Upload"
+					/>
+					<img src={this.state.img} />
+
+					{this.state.img && (
+						<button
+							className="remove-logo button hoverable"
+							onClick={this.resetFile}
+						>
+							Remove Image
+						</button>
+					)}
+				</div>
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ({
+	drawing: state.drawing,
 	bottom: state.bottom
 });
 
 export default connect(
 	mapStateToProps,
-	{ setShapeColor, addShape }
+	{ setShapeColor, addShape, saveData }
 )(ShapeSelector);
