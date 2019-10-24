@@ -19,7 +19,9 @@ import {
 	selectText,
 	addImage,
 	updateImages,
-	selectImage
+	selectImage,
+	copyImage,
+	deleteImage
 } from "../../actions/sideActions";
 import { connect } from "react-redux";
 
@@ -88,6 +90,9 @@ class SideDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						addImage={this.props.addImage}
+						copyImage={this.props.copyImage}
+						deleteImage={this.props.deleteImage}
 						view="side"
 					/>
 				</TabPanel>
@@ -111,6 +116,8 @@ export default connect(
 		selectText,
 		addImage,
 		updateImages,
-		selectImage
+		selectImage,
+		copyImage,
+		deleteImage
 	}
 )(SideDrawingTools);

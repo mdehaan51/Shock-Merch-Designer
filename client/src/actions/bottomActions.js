@@ -8,7 +8,9 @@ import {
 	SELECT_BOTTOM_TEXT,
 	ADD_BOTTOM_IMAGE,
 	UPDATE_BOTTOM_IMAGES,
-	SELECT_BOTTOM_IMAGE
+	SELECT_BOTTOM_IMAGE,
+	COPY_BOTTOM_IMAGE,
+	DELETE_BOTTOM_IMAGE
 } from "./types";
 
 export const setShapeColor = color => {
@@ -81,5 +83,19 @@ export const selectImage = id => {
 	return {
 		type: SELECT_BOTTOM_IMAGE,
 		id: id
+	};
+};
+
+export const copyImage = image => {
+	return {
+		type: COPY_BOTTOM_IMAGE,
+		payload: image
+	};
+};
+
+export const deleteImage = image => {
+	return {
+		type: DELETE_BOTTOM_IMAGE,
+		payload: image
 	};
 };

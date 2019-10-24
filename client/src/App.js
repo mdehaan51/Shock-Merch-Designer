@@ -9,6 +9,7 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 //import DesignLayout from "./components/DesignLayout.js";
 import DrawingDashboard from "./components/DrawingComponents/DrawingDashboard";
+import RequestQuote from "./components/DrawingComponents/RequestQuote";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Admin from "./components/admin/Admin";
@@ -62,6 +63,11 @@ class App extends Component {
                 exact
                 path="/dashboard"
                 component={DrawingDashboard}
+              />
+              <PrivateRoute
+                exact
+                path="/request-quote"
+                component={RequestQuote}
               />
             </Switch>
           </div>

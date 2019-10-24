@@ -134,3 +134,23 @@
 .submit-button {
 	float: right;
 }
+.form-select {
+	width: 49%;
+}
+
+.request-body h2 {
+	overflow: hidden;
+	color: #ff367a;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px black;
+}
+
+.request-images {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.request-images img {
+	margin: 10px;
+}

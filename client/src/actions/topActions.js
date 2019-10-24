@@ -5,7 +5,9 @@ import {
 	SELECT_TOP_TEXT,
 	ADD_TOP_IMAGE,
 	UPDATE_TOP_IMAGES,
-	SELECT_TOP_IMAGE
+	SELECT_TOP_IMAGE,
+	COPY_TOP_IMAGE,
+	DELETE_TOP_IMAGE
 } from "./types";
 
 export const addText = (text, style) => {
@@ -51,5 +53,19 @@ export const selectImage = id => {
 	return {
 		type: SELECT_TOP_IMAGE,
 		id: id
+	};
+};
+
+export const copyImage = image => {
+	return {
+		type: COPY_TOP_IMAGE,
+		payload: image
+	};
+};
+
+export const deleteImage = image => {
+	return {
+		type: DELETE_TOP_IMAGE,
+		payload: image
 	};
 };

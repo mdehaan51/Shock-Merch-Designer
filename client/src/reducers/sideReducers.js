@@ -6,7 +6,9 @@ import {
 	ADD_SIDE_IMAGE,
 	UPDATE_SIDE_IMAGES,
 	SELECT_SIDE_IMAGE,
-	GET_SELECTED_TEXT_DETAILS
+	COPY_SIDE_IMAGE,
+	GET_SELECTED_TEXT_DETAILS,
+	DELETE_SIDE_IMAGE
 } from "../actions/types";
 
 const initialState = {
@@ -67,10 +69,30 @@ export default function(state = initialState, action) {
 				...state,
 				images: action.items
 			};
+		case COPY_SIDE_IMAGE:
+			let number2 = state.counter;
+			let imageId2 = `image${number2}`;
+			return {
+				...state,
+				counter: number2 + 1,
+				images: [
+					...state.images,
+					{
+						id: imageId2,
+						src: action.payload.src
+					}
+				]
+			};
 		case SELECT_SIDE_IMAGE:
 			return {
 				...state,
 				selectedItem: action.id
+			};
+
+		case DELETE_SIDE_IMAGE:
+			return {
+				...state,
+				images: action.payload
 			};
 
 		default:

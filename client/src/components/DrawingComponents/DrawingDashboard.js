@@ -73,6 +73,7 @@ class DesignLayout extends Component {
 					request={this.showRequestModal}
 					help={this.showHelpModal}
 					captureImage={this.captureImage}
+					history={this.props.history}
 				/>
 				<Modal
 					show={this.props.design.modal.active}

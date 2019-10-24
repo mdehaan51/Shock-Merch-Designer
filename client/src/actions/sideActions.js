@@ -6,6 +6,8 @@ import {
 	ADD_SIDE_IMAGE,
 	UPDATE_SIDE_IMAGES,
 	SELECT_SIDE_IMAGE,
+	COPY_SIDE_IMAGE,
+	DELETE_SIDE_IMAGE,
 	GET_SELECTED_TEXT_DETAILS
 } from "./types";
 
@@ -59,5 +61,19 @@ export const selectImage = id => {
 	return {
 		type: SELECT_SIDE_IMAGE,
 		id: id
+	};
+};
+
+export const copyImage = image => {
+	return {
+		type: COPY_SIDE_IMAGE,
+		payload: image
+	};
+};
+
+export const deleteImage = image => {
+	return {
+		type: DELETE_SIDE_IMAGE,
+		payload: image
 	};
 };

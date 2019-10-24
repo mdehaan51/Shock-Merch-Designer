@@ -19,7 +19,9 @@ import {
 	selectText,
 	addImage,
 	updateImages,
-	selectImage
+	selectImage,
+	copyImage,
+	deleteImage
 } from "../../actions/topActions";
 import { connect } from "react-redux";
 
@@ -86,6 +88,9 @@ class TopDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						addImage={this.props.addImage}
+						copyImage={this.props.copyImage}
+						deleteImage={this.props.deleteImage}
 						view="top"
 					/>
 				</TabPanel>
@@ -109,6 +114,8 @@ export default connect(
 		selectText,
 		addImage,
 		updateImages,
-		selectImage
+		selectImage,
+		copyImage,
+		deleteImage
 	}
 )(TopDrawingTools);

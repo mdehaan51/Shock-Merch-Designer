@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { NavButton, NavInput } from "./constants.js";
 import { connect } from "react-redux";
 import { setGridSize, toggleModal } from "../actions/gridActions";
@@ -11,35 +12,16 @@ class Navbar extends React.Component {
 			width: ""
 		};
 		this.updateInput = this.updateInput.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	updateInput(id, event) {
 		this.setState({ [id]: event.target.value });
 	}
 
-	onSubmit = e => {
-		e.preventDefault();
-		if (this.state.height > 0 && this.state.width > 0) {
-			const dimensions = {
-				height: this.state.height,
-				width: this.state.width
-			};
-			this.props.setGridSize(dimensions);
-		} else {
-			alert("Please Input A Value Before Submitting");
-		}
-	};
-
 	openRequestModal = e => {
 		//this.props.captureImage();
 		e.preventDefault();
-		const modal = {
-			active: true,
-			type: "request",
-			title: "Lets Get This Park Started!"
-		};
-		this.props.toggleModal(modal);
+		this.props.history.push("/request-quote");
 	};
 
 	openHelpModal = e => {
@@ -75,8 +57,8 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	width: state.width,
-	height: state.height
+	auth: state.auth,
+	design: state.design
 });
 
 export default connect(

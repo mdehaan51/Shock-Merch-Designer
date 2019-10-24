@@ -8,7 +8,9 @@ import {
 	SELECT_BOTTOM_TEXT,
 	ADD_BOTTOM_IMAGE,
 	UPDATE_BOTTOM_IMAGES,
-	SELECT_BOTTOM_IMAGE
+	SELECT_BOTTOM_IMAGE,
+	COPY_BOTTOM_IMAGE,
+	DELETE_BOTTOM_IMAGE
 } from "../actions/types";
 
 const initialState = {
@@ -58,19 +60,6 @@ export default function(state = initialState, action) {
 					}
 				]
 			};
-		/*counter: count + 1,
-				inputShapes: [
-					...state.inputShapes,
-					{
-						x: 10,
-						y: 10,
-						width: 100,
-						height: 100,
-						rotation: 45.0,
-						src: action.src,
-						id: id
-					}
-				]*/
 
 		case UPDATE_SHAPES:
 			return {
@@ -130,6 +119,25 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				selectedItem: action.id
+			};
+		case COPY_BOTTOM_IMAGE:
+			let number2 = state.counter;
+			let imageId2 = `image${number2}`;
+			return {
+				...state,
+				counter: number2 + 1,
+				images: [
+					...state.images,
+					{
+						id: imageId2,
+						src: action.payload.src
+					}
+				]
+			};
+		case DELETE_BOTTOM_IMAGE:
+			return {
+				...state,
+				images: action.payload
 			};
 
 		default:

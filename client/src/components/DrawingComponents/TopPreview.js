@@ -11,7 +11,12 @@ import { Socks } from "./constants";
 import TextElement from "./TextElement";
 import ImageElement from "./ImageElement";
 
-import { updateText, selectText, updateImages } from "../../actions/topActions";
+import {
+	updateText,
+	selectText,
+	updateImages,
+	selectImage
+} from "../../actions/topActions";
 
 import { connect } from "react-redux";
 
@@ -141,6 +146,7 @@ class TopPreview extends Component {
 											this.setState({
 												selectedShape: data.id
 											});
+											this.props.selectImage(data.id);
 											/*let id = this.state.selectedShape;
 											let inputShapes = this.state.inputShapes.slice();
 											let item = inputShapes.find(
@@ -192,5 +198,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ updateText, selectText, updateImages }
+	{ updateText, selectText, updateImages, selectImage }
 )(TopPreview);

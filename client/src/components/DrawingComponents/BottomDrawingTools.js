@@ -23,7 +23,9 @@ import {
 	selectText,
 	addImage,
 	updateImages,
-	selectImage
+	selectImage,
+	copyImage,
+	deleteImage
 } from "../../actions/bottomActions";
 import { connect } from "react-redux";
 
@@ -95,6 +97,9 @@ class BottomDrawingTools extends Component {
 					<ImageUpload
 						saveImage={this.props.addImage}
 						selectedImage={selectedImage}
+						addImage={this.props.addImage}
+						copyImage={this.props.copyImage}
+						deleteImage={this.props.deleteImage}
 						view="bottom"
 					/>
 				</TabPanel>
@@ -121,6 +126,8 @@ export default connect(
 		selectText,
 		addImage,
 		updateImages,
-		selectImage
+		selectImage,
+		copyImage,
+		deleteImage
 	}
 )(BottomDrawingTools);

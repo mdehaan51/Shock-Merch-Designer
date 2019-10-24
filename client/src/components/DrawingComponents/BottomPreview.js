@@ -160,7 +160,6 @@ class BottomPreview extends Component {
 								);
 							})}
 							{imageList.map((data, id) => {
-								console.log(data);
 								return (
 									<ImageElement
 										key={id}

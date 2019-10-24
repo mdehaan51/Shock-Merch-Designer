@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 //import LogoSizeSelect from "./LogoSizeSelect";
 
-import { addImage } from "../../actions/sideActions";
+//import { addImage, copyImage, deleteImage } from "../../actions/sideActions";
 import { connect } from "react-redux";
 
 class ImageUpload extends Component {
@@ -20,6 +20,7 @@ class ImageUpload extends Component {
 			console.log(event.target.files[0]);
 			this.props.saveImage(URL.createObjectURL(event.target.files[0]));
 		}
+		event.target.value = null;
 	}
 
 	copyImage = () => {
@@ -44,33 +45,37 @@ class ImageUpload extends Component {
 			default:
 				break;
 		}
+		console.log(objects);
 		this.props.copyImage(objects);
 	};
 
 	deleteImage = () => {
-		let id = this.props.bottom.selectedItem;
+		let id;
 		let objects;
 		switch (this.props.view) {
 			case "side":
-				objects = this.props.side.text.filter(function(obj) {
+				id = this.props.side.selectedItem;
+				objects = this.props.side.images.filter(function(obj) {
 					return obj.id !== id;
 				});
 				break;
 			case "bottom":
-				objects = this.props.bottom.text.filter(function(obj) {
+				id = this.props.bottom.selectedItem;
+				objects = this.props.bottom.images.filter(function(obj) {
 					return obj.id !== id;
 				});
 				break;
 			case "top":
-				objects = this.props.top.text.filter(function(obj) {
+				id = this.props.top.selectedItem;
+				objects = this.props.top.images.filter(function(obj) {
 					return obj.id !== id;
 				});
 				break;
 			default:
 				break;
 		}
-
-		this.props.saveImage(objects);
+		console.log(objects);
+		this.props.deleteImage(objects);
 	};
 
 	resetFile(event) {
@@ -140,7 +145,4 @@ const mapStateToProps = state => ({
 	top: state.top
 });
 
-export default connect(
-	mapStateToProps,
-	{ addImage }
-)(ImageUpload);
+export default connect(mapStateToProps)(ImageUpload);
