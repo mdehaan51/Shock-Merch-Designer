@@ -26,27 +26,40 @@ transporter.verify((error, success) => {
 });
 
 router.post("/send", (req, res, next) => {
+	console.log(req);
 	var name = req.body.name;
 	var business = req.body.business;
 	var email = req.body.email;
 	var phone = req.body.phone;
 	var location = req.body.location;
 	var message = req.body.message;
-	var size = req.body.size;
-	var date = req.body.date;
-	var components = createComponentList(req.body.components);
+	var number = req.body.number;
+	var time = req.body.time;
+	var side = String(req.body.side);
+	var bottom = String(req.body.bottom);
+	var top = String(req.body.top);
 	var img = String(req.body.img);
-	var content = `name: ${name} \n business: ${business} \n email: ${email} \n phone: ${phone} \n location: ${location} \n size: ${size} \n opening in: ${date} \n message: ${message} \n components: ${components}`;
+	var content = `name: ${name} \n business: ${business} \n email: ${email} \n phone: ${phone} \n location: ${location} \n number needed: ${number} \n needed by: ${time} \n message: ${message}`;
 
 	var mail = {
 		from: email,
 		to: auth.ADMIN, //Change to email address that you want to receive messages on
-		subject: "Someone Needs A Trampoline Park!",
+		subject: "Someone Needs Some Socks!",
 		text: content,
 		attachments: [
 			{
-				filename: business + "-park.jpg",
-				content: img.split("base64,")[1],
+				filename: business + "-side-view.jpg",
+				content: side.split("base64,")[1],
+				encoding: "base64"
+			},
+			{
+				filename: business + "-bottom-view.jpg",
+				content: bottom.split("base64,")[1],
+				encoding: "base64"
+			},
+			{
+				filename: business + "-top-view.jpg",
+				content: top.split("base64,")[1],
 				encoding: "base64"
 			}
 		]

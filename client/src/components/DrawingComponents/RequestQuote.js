@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 //Component Imports
 import Modal from "../Modal.js";
@@ -13,7 +14,7 @@ import TopPreview from "./TopPreview";
 import SideDrawingTools from "./SideDrawingTools";
 import BottomDrawingTools from "./BottomDrawingTools";
 import TopDrawingTools from "./TopDrawingTools";
-import { RequestForm } from "./RequestQuoteForm";
+import RequestForm from "./RequestQuoteForm";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 //Redux Imports
@@ -34,11 +35,11 @@ class DesignLayout extends Component {
 	}
 
 	componentDidMount() {
-		window.onbeforeunload = e => {
+		/*window.onbeforeunload = e => {
 			console.log("Stop this");
 			e.preventDefault();
 			e.returnValue = "";
-		};
+		};*/
 	}
 
 	componentDidUpdate(prevProps, prevState) {}
@@ -96,14 +97,14 @@ class DesignLayout extends Component {
 						<div className="col s12">
 							<h2>Request a Quote</h2>
 						</div>
-						<div className="col s6">
+						<div className="col s12 m12 l12 xl6">
 							<h5>Give Us Some Details</h5>
 							<RequestForm />
 						</div>
 
-						<div className="col s6">
+						<div className="col s12 m12 l12 xl6">
 							<div className="row request-images">
-								<div className="image-container">
+								<div className="image-container col s12 m6 l4 xl6">
 									<h5>Side View</h5>
 									<img
 										src={
@@ -114,7 +115,7 @@ class DesignLayout extends Component {
 										alt="Side Image"
 									/>
 								</div>
-								<div className="image-container">
+								<div className="image-container col s12 m6 l4 xl6">
 									<h5>Bottom View</h5>
 									<img
 										src={
@@ -126,7 +127,7 @@ class DesignLayout extends Component {
 										alt="Bottom Image"
 									/>
 								</div>
-								<div className="image-container">
+								<div className="image-container col s12 m6 l4 xl6">
 									<h5>Top View</h5>
 
 									<img

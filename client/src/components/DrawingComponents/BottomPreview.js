@@ -44,10 +44,23 @@ class BottomPreview extends Component {
 					id: "rect1"
 				}
 			],
-			selectedShape: ""
+			selectedShape: "",
+			width: null,
+			height: null
 		};
 	}
+
+	componentDidMount() {
+		this.setState({
+			width: this.refs.stageContainer.offsetWidth,
+			height: this.refs.stageContainer.offsetHeight
+		});
+	}
 	componentWillUnmount() {
+		this.setState({
+			selectedShape: null
+		});
+		this.props.selectText("");
 		let sideURL = this.refs.bottomStage.toDataURL();
 		this.props.saveData("bottom", sideURL);
 	}
@@ -80,13 +93,26 @@ class BottomPreview extends Component {
 		const bottomText = this.props.bottom.text;
 		const imageList = this.props.bottom.images;
 
+		let scale;
+		let sockWidth = 350;
+		let sockHeight = 699;
+		let screenHeight = 750;
+
+		if (window.innerWidth < 993) {
+			sockHeight = this.state.height * 0.9;
+			scale = sockHeight / 699;
+
+			sockWidth = Math.min(scale * sockWidth);
+			screenHeight = 375;
+		}
+
 		return (
 			<div>
-				<div className="primary-color">
+				<div className="primary-color" ref="stageContainer">
 					<Stage
 						ref="bottomStage"
-						width={600}
-						height={750}
+						width={sockWidth * 1.1}
+						height={screenHeight}
 						onMouseDown={e => {
 							// deselect when clicked on empty area
 							const clickedOnEmpty =
@@ -101,16 +127,16 @@ class BottomPreview extends Component {
 					>
 						<Layer>
 							<SockImage2
-								width={350}
-								height={699}
+								width={sockWidth}
+								height={sockHeight}
 								blue={primary.blue}
 								red={primary.red}
 								green={primary.green}
 								src="images/sockbottom.png"
 							/>
 							<SockImage2
-								width={350}
-								height={699}
+								width={sockWidth}
+								height={sockHeight}
 								blue={secondary.blue}
 								red={secondary.red}
 								green={secondary.green}
@@ -204,18 +230,6 @@ class BottomPreview extends Component {
 						</Layer>
 					</Stage>
 				</div>
-				{/*<div className="secondary-color">
-					<Stage width={800} height={800}>
-						<Layer>
-							<SockImage
-								blue={color.blue}
-								red={color.red}
-								green={color.green}
-								src={null}
-							/>
-						</Layer>
-					</Stage>
-				</div>*/}
 			</div>
 		);
 	}

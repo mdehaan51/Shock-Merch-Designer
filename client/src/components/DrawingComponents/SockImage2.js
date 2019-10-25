@@ -6,7 +6,7 @@ import useImage from "use-image";
 
 const URL = "images/WhiteSocks.png";
 
-const SockImage2 = ({ width, height, red, blue, green, src }) => {
+const SockImage2 = ({ width, height, red, blue, green, src, x }) => {
 	const [image] = useImage(src, "Anonimus");
 	const imageRef = React.useRef();
 
@@ -23,7 +23,7 @@ const SockImage2 = ({ width, height, red, blue, green, src }) => {
 	return (
 		<Image
 			filters={[Konva.Filters.RGB]}
-			x={25}
+			x={x}
 			y={10}
 			width={width}
 			height={height}

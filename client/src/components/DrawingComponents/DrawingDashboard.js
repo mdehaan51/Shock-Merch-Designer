@@ -106,26 +106,26 @@ class DesignLayout extends Component {
 								<Tab>Top Of Sock</Tab>
 							</TabList>
 							<TabPanel>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<SidePreview />
 								</div>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<SideDrawingTools />
 								</div>
 							</TabPanel>
 							<TabPanel>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<BottomPreview />
 								</div>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<BottomDrawingTools />
 								</div>
 							</TabPanel>
 							<TabPanel>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<TopPreview />
 								</div>
-								<div className="col s6">
+								<div className="col s12 m12 l6 xl6">
 									<TopDrawingTools />
 								</div>
 							</TabPanel>

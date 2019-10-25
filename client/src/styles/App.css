@@ -110,7 +110,7 @@ input[type="number"] {
   height: 30px;
   border: none;
   cursor: pointer;
-  min-width: 105px;
+  min-width: 110px;
   margin: 0 10px;
 }
 .logout-button {
@@ -248,7 +248,7 @@ input[type="number"] {
     rgba(0, 0, 0, 0.5)
   );
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   color: white;
   flex-wrap: wrap;
 }

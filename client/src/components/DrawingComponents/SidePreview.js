@@ -29,9 +29,19 @@ class SidePreview extends Component {
 		super(props);
 		this.state = {
 			textItems: [],
-			selectedShape: ""
+			selectedShape: "",
+			width: null,
+			height: null
 		};
 		let stageRef = React.createRef();
+	}
+
+	componentDidMount() {
+		//console.log(this.refs.stageContainer.offsetWidth);
+		this.setState({
+			width: this.refs.stageContainer.offsetWidth,
+			height: this.refs.stageContainer.offsetHeight
+		});
 	}
 
 	componentWillUnmount() {
@@ -54,11 +64,27 @@ class SidePreview extends Component {
 		const secondary = this.props.drawing.secondary;
 		const sideText = this.props.side.text;
 		const imageList = this.props.side.images;
-
+		let scale;
+		let sockWidth = 500;
+		let sockHeight = 694;
+		let screenHeight = 750;
+		console.log(window.innerHeight);
+		if (window.innerWidth < 993) {
+			console.log("here");
+			sockHeight = this.state.height * 0.9;
+			scale = sockHeight / 694;
+			sockWidth = Math.min(scale * sockWidth);
+			console.log(sockHeight);
+			screenHeight = 375;
+		}
 		return (
 			<div>
-				<div className="primary-color">
-					<Stage ref="sideStage" width={600} height={750}>
+				<div className="primary-color" ref="stageContainer">
+					<Stage
+						ref="sideStage"
+						width={sockWidth * 1.1}
+						height={screenHeight}
+					>
 						<Layer
 							onMouseDown={e => {
 								this.setState({
@@ -68,20 +94,22 @@ class SidePreview extends Component {
 							}}
 						>
 							<SockImage2
+								x={10}
 								blue={primary.blue}
 								red={primary.red}
 								green={primary.green}
-								width={500}
-								height={694}
+								width={sockWidth}
+								height={sockHeight}
 								src="images/socksideview4.png"
 								shadowBlur={10}
 							/>
 							<SockImage2
+								x={10}
 								blue={secondary.blue}
 								red={secondary.red}
 								green={secondary.green}
-								width={500}
-								height={694}
+								width={sockWidth}
+								height={sockHeight}
 								src="images/sideheeltoe.png"
 								shadowBlur={0}
 							/>

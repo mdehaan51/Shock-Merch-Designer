@@ -28,16 +28,19 @@ class ColorSelect extends Component {
 
 	render() {
 		return (
-			<div>
-				Choose Your Sock Colors
-				<ChromePicker
-					color={this.props.drawing.primary.hex}
-					onChangeComplete={this.onChangeCompletePrimary}
-				/>
-				<ChromePicker
-					color={this.props.drawing.secondary.hex}
-					onChangeComplete={this.onChangeCompleteSecondary}
-				/>
+			<div className="row">
+				<div className="col s6">
+					<ChromePicker
+						color={this.props.drawing.primary.hex}
+						onChangeComplete={this.onChangeCompletePrimary}
+					/>
+				</div>
+				<div className="col s6">
+					<ChromePicker
+						color={this.props.drawing.secondary.hex}
+						onChangeComplete={this.onChangeCompleteSecondary}
+					/>
+				</div>
 			</div>
 		);
 	}

@@ -26,8 +26,16 @@ class TopPreview extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedShape: ""
+			selectedShape: "",
+			width: null,
+			height: null
 		};
+	}
+	componentDidMount() {
+		this.setState({
+			width: this.refs.stageContainer.offsetWidth,
+			height: this.refs.stageContainer.offsetHeight
+		});
 	}
 	componentWillUnmount() {
 		let sideURL = this.refs.topStage.toDataURL();
@@ -48,13 +56,26 @@ class TopPreview extends Component {
 		let secondary = this.props.drawing.secondary;
 		const topText = this.props.top.text;
 		const imageList = this.props.top.images;
+		let scale;
+		let sockWidth = 213;
+		let sockHeight = 600;
+		let screenHeight = 750;
+
+		if (window.innerWidth < 993) {
+			sockHeight = this.state.height * 0.9;
+			scale = sockHeight / 600;
+
+			sockWidth = Math.min(scale * sockWidth);
+
+			screenHeight = 375;
+		}
 		return (
 			<div>
-				<div className="primary-color">
+				<div className="primary-color" ref="stageContainer">
 					<Stage
 						ref="topStage"
-						width={600}
-						height={750}
+						width={sockWidth * 1.1}
+						height={screenHeight}
 						onMouseDown={e => {
 							// deselect when clicked on empty area
 							const clickedOnEmpty =
@@ -68,15 +89,12 @@ class TopPreview extends Component {
 						}}
 					>
 						<Layer>
-							{/*<Portal>*/}
-
-							{/*<Portal>*/}
 							<SockImage2
 								blue={primary.blue}
 								red={primary.red}
 								green={primary.green}
-								width={750}
-								height={600}
+								width={sockWidth}
+								height={sockHeight}
 								src="images/sockfrontview.png"
 								shadowBlur={10}
 							/>
@@ -84,8 +102,8 @@ class TopPreview extends Component {
 								blue={secondary.blue}
 								red={secondary.red}
 								green={secondary.green}
-								width={750}
-								height={600}
+								width={sockWidth}
+								height={sockHeight}
 								src="images/sockfrontviewTOE.png"
 								shadowBlur={0}
 							/>
@@ -108,32 +126,6 @@ class TopPreview extends Component {
 												selectedShape: data.id
 											});
 											this.props.selectText(data.id);
-											/*let id = data.id;
-											let items = this.props.drawing
-												.sideText;
-											console.log(items);
-											let textItem = items.filter(obj => {
-												return obj.id === id;
-											});
-											console.log(textItem);
-											console.log(id);
-											let index = items.findIndex(
-												obj => obj.id === id
-											);
-											console.log(items);
-											items.splice(index, 1);
-											console.log(items);
-											items.push(textItem[0]);
-											console.log(items);
-											this.props.updateSideText(items);
-											/*let textItems = this.props.drawing
-												.sideText;
-											let textDetails = textItems.filter(
-												obj => {
-													return obj.id === data.id;
-												}
-											);
-											this.props.selectText(textDetails);*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.top.text.slice();
@@ -144,7 +136,6 @@ class TopPreview extends Component {
 								);
 							})}
 							{imageList.map((data, id) => {
-								console.log(data);
 								return (
 									<ImageElement
 										key={id}
@@ -160,24 +151,10 @@ class TopPreview extends Component {
 												selectedShape: data.id
 											});
 											this.props.selectImage(data.id);
-											/*let id = this.state.selectedShape;
-											let inputShapes = this.state.inputShapes.slice();
-											let item = inputShapes.find(
-												i => i.id === id
-											);
-											let index = inputShapes.indexOf(
-												item
-											);
-											inputShapes.splice(index, 1);
-											inputShapes.push(item);
-											this.setState({
-												inputShapes
-											});*/
 										}}
 										onChange={newAttrs => {
 											const inputs = this.props.top.images.slice();
-											console.log(inputs);
-											console.log(newAttrs);
+
 											inputs[id] = newAttrs;
 											this.props.updateImages(inputs);
 										}}
@@ -187,18 +164,6 @@ class TopPreview extends Component {
 						</Layer>
 					</Stage>
 				</div>
-				{/*<div className="secondary-color">
-					<Stage width={800} height={800}>
-						<Layer>
-							<SockImage
-								blue={color.blue}
-								red={color.red}
-								green={color.green}
-								src={null}
-							/>
-						</Layer>
-					</Stage>
-				</div>*/}
 			</div>
 		);
 	}
