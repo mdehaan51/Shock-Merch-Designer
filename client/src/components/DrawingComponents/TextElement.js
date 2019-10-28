@@ -32,6 +32,7 @@ const TextElement = ({
 				key={id}
 				rotation={rotation}
 				onClick={onSelect}
+				onTap={onSelect}
 				ref={shapeRef}
 				x={x}
 				y={y}

@@ -45,6 +45,7 @@ const ShapeElement = ({
 		<React.Fragment>
 			<Image
 				onClick={onSelect}
+				onTap={onSelect}
 				ref={shapeRef}
 				{...shapeProps}
 				x={x}

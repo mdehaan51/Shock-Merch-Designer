@@ -29,13 +29,15 @@ class ColorSelect extends Component {
 	render() {
 		return (
 			<div className="row">
-				<div className="col s6">
+				<div className="col s12 m6 l6 xl6">
+					Primary Color
 					<ChromePicker
 						color={this.props.drawing.primary.hex}
 						onChangeComplete={this.onChangeCompletePrimary}
 					/>
 				</div>
-				<div className="col s6">
+				<div className="col s12 m6 l6 xl6">
+					Secondary Color
 					<ChromePicker
 						color={this.props.drawing.secondary.hex}
 						onChangeComplete={this.onChangeCompleteSecondary}

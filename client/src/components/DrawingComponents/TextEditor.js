@@ -149,7 +149,7 @@ class TextEditor extends Component {
 				{Object.keys(selectedText).length === 0 ? null : (
 					<React.Fragment>
 						<div className="row">
-							<div className="text input col s6">
+							<div className="text input col s12 m6 l6 xl6">
 								<label>Enter Your Text Here</label>
 								<input
 									type="text"
@@ -165,7 +165,7 @@ class TextEditor extends Component {
 									}
 								/>
 							</div>
-							<div className="font-picker col s6">
+							<div className="font-picker col s12 m6 l6 xl6">
 								<label className=" col s12">
 									Choose Your Font
 								</label>
@@ -189,7 +189,7 @@ class TextEditor extends Component {
 							</div>
 						</div>
 						<div className="row">
-							<div className="col s6">
+							<div className="col s12 m6 l6 xl6">
 								<label>Choose Your Text Color</label>
 								<ChromePicker
 									color={this.state.selectedText.style.fill}
@@ -206,7 +206,7 @@ class TextEditor extends Component {
 									}
 								/>
 							</div>
-							<div className="col s6">
+							<div className="col s12 m6 l6 xl6">
 								<label>Choose Your Text Outline Color</label>
 								<ChromePicker
 									color={this.state.selectedText.style.stroke}
@@ -241,7 +241,7 @@ class TextEditor extends Component {
 							</div>
 						</div>
 						<div className="row">
-							<div className="col s6">
+							<div className="col s12 m6 l6 xl6">
 								<label>Font Size</label>
 								<input
 									type="number"
@@ -260,7 +260,7 @@ class TextEditor extends Component {
 									}
 								/>
 							</div>
-							<div className="col s6">
+							<div className="col s12 m6 l6 xl6">
 								<button
 									className="delete-text-button button hoverable"
 									onClick={this.deleteText}
