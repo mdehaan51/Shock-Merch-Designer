@@ -1,4 +1,4 @@
-This is a Trampoline Parker Builder for Shock Trampolines based out of Coeur d'Alene, Idaho.
+This is a Custom Jump Sock designer for Shock Trampolines based out of Coeur d'Alene, Idaho.
 
 Front end is React.
 
