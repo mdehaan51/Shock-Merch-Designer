@@ -77,6 +77,11 @@ class SidePreview extends Component {
 			console.log(sockHeight);
 			screenHeight = 375;
 		}
+		let sockImage = "images/socksideview4.png";
+		if (this.props.drawing.sockType === "ankle") {
+			sockImage = "images/socksideview4-ankle.png";
+		}
+
 		return (
 			<div>
 				<div className="primary-color" ref="stageContainer">
@@ -100,7 +105,7 @@ class SidePreview extends Component {
 								green={primary.green}
 								width={sockWidth}
 								height={sockHeight}
-								src="images/socksideview4.png"
+								src={sockImage}
 								shadowBlur={10}
 							/>
 							<SockImage2

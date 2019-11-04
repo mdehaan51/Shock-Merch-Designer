@@ -69,6 +69,11 @@ class TopPreview extends Component {
 
 			screenHeight = 375;
 		}
+
+		let sockImage = "images/sockfrontview.png";
+		if (this.props.drawing.sockType === "ankle") {
+			sockImage = "images/sockfrontview-ankle2.png";
+		}
 		return (
 			<div>
 				<div className="primary-color" ref="stageContainer">
@@ -95,7 +100,7 @@ class TopPreview extends Component {
 								green={primary.green}
 								width={sockWidth}
 								height={sockHeight}
-								src="images/sockfrontview.png"
+								src={sockImage}
 								shadowBlur={10}
 							/>
 							<SockImage2

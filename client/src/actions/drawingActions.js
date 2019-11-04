@@ -2,7 +2,8 @@ import axios from "axios";
 import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,
-	SAVE_DATA
+	SAVE_DATA,
+	SET_SOCK
 } from "./types";
 
 export const setPrimarySockColor = color => {
@@ -32,3 +33,11 @@ export const saveData = (side, data) => {
 		data: data
 	};
 };
+
+export const setSock = type => {
+	return {
+		type: SET_SOCK,
+		payload: type
+	};
+};
+

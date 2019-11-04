@@ -17,6 +17,7 @@ export const SAVE_LOGO = "SAVE_LOGO";
 export const SET_LOGO_SIZE = "SET_LOGO_SIZE";
 export const SET_LOGO_ROTATION = "SET_LOGO_ROTATION";
 export const SAVE_DATA = "SAVE_DATA";
+export const SET_SOCK = "SET_SOCK";
 
 //DrawingActions
 export const SET_PRIMARY_SOCK_COLOR = "SET_PRIMARY_SOCK_COLOR";

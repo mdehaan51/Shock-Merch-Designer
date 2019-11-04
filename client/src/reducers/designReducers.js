@@ -18,6 +18,8 @@ const initialState = {
 		type: "request",
 		title: "Lets Get This Park Started!"
 	},
+	sockType: "crew",
+
 	side: {
 		font: "My Park",
 		//primary: "#A8DF54",

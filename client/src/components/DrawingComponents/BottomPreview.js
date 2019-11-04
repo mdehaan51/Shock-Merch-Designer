@@ -178,6 +178,8 @@ class BottomPreview extends Component {
 										shapeProps={data}
 										x={data.x}
 										y={data.y}
+										width={100}
+										height={100}
 										isSelected={
 											data.id === this.state.selectedShape
 										}

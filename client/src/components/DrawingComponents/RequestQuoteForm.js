@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { imgSrcToDataURL } from "blob-util";
 //import "../styles/App.css";
 
 class RequestForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
-	}
-	componentDidMount() {
-		console.log(document.getElementById("business-name"));
+		this.state = {
+			sideImage: []
+		};
 	}
 
 	onSubmit = e => {
@@ -26,6 +26,24 @@ class RequestForm extends Component {
 		const side = this.props.drawing.sideData;
 		const bottom = this.props.drawing.bottomData;
 		const top = this.props.drawing.topData;
+		var sideImages = [];
+		if (this.props.side.images.length > 0) {
+			this.props.side.images.forEach(function(items) {
+				console.log(items);
+				var content = imgSrcToDataURL(items.src)
+					.then(dataURL => {
+						console.log(dataURL);
+
+						return dataURL;
+						console.log(sideImages);
+					})
+					.catch(err => {
+						console.log(err);
+					});
+				sideImages.push(content);
+			});
+			console.log(sideImages);
+		}
 		let messageData = {
 			name: name,
 			business: business,
@@ -37,9 +55,13 @@ class RequestForm extends Component {
 			message: message,
 			side: side,
 			bottom: bottom,
-			top: top
+			top: top,
+			sideImages: sideImages,
+			bottomImages: [],
+			topImages: []
 		};
-		console.log(business);
+		console.log(document.getElementById("name").value);
+		console.log(document.getElementById("business-name").value);
 
 		axios({
 			method: "POST",
@@ -52,7 +74,6 @@ class RequestForm extends Component {
 			url: "/api/mailer/send",
 			data: messageData
 		}).then(response => {
-			console.log(response);
 			if (response.data.msg === "success") {
 				alert("Message Sent.");
 			} else if (response.data.msg === "fail") {
@@ -76,9 +97,6 @@ class RequestForm extends Component {
 						placeholder="Business Name"
 						id="business-name"
 						required
-						onChange={console.log(
-							document.getElementById("business-name")
-						)}
 					/>
 				</div>
 				<div className="form-row input-field">
@@ -170,7 +188,10 @@ class RequestForm extends Component {
 const mapStateToProps = state => ({
 	auth: state.auth,
 	design: state.design,
-	drawing: state.drawing
+	drawing: state.drawing,
+	side: state.side,
+	bottom: state.bottom,
+	top: state.top
 });
 
 export default connect(mapStateToProps)(RequestForm);

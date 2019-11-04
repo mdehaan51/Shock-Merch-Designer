@@ -4,104 +4,6 @@ import { connect } from "react-redux";
 import { quoteRequest } from "../actions/gridActions";
 import "../styles/App.css";
 
-const RequestForm = ({ onSubmit, size, date, onChange, email, name }) => {
-	return (
-		<form className="modal-form" id="contact-form" onSubmit={onSubmit}>
-			<div className="form-row input-field">
-				<input
-					disabled
-					type="text"
-					placeholder="Name"
-					id="name"
-					value={name}
-				/>
-
-				<input
-					type="text"
-					placeholder="Business Name"
-					id="business-name"
-					required
-				/>
-			</div>
-			<div className="form-row input-field">
-				<input
-					disabled
-					type="email"
-					placeholder="Email Address"
-					id="email"
-					value={email}
-				/>
-				<input
-					type="tel"
-					placeholder="Phone Number"
-					id="phone"
-					required
-				/>
-			</div>
-			<div className="form-row input-field">
-				<input
-					type="text"
-					placeholder="City, State"
-					id="city"
-					required
-				/>
-				<input
-					type="text"
-					placeholder="Country"
-					id="country"
-					required
-				/>
-			</div>
-			<div className="form-row input-field">
-				<select
-					className="browser-default"
-					//defaultValue=""
-					name="size"
-					onChange={onChange}
-					value={size}
-				>
-					<option value="" disabled>
-						How Big Is Your Park?
-					</option>
-					<option value="10,000-20,000 SF">10,000-20,000 SF</option>
-					<option value="20,000-40,000 SF">20,000-40,000 SF</option>
-					<option value="40,000+ SF">40,000+ SF</option>
-				</select>
-				<select
-					className="browser-default"
-					name="date"
-					onChange={onChange}
-					//defaultValue=""
-					value={date}
-				>
-					<option value="" disabled>
-						When are you opening?
-					</option>
-					<option value="3-6 Months">3-6 Months</option>
-					<option value="6-12 Months">6-12 Months</option>
-					<option value="More than 12 Months">
-						More than 12 Months
-					</option>
-				</select>
-			</div>
-			<div className="form-row input-field">
-				<textarea
-					className="materialize-textarea"
-					type="text"
-					placeholder="Give us some details about what you need!"
-					id="message"
-					style={{
-						height: "100px"
-					}}
-				/>
-			</div>
-			<button className="button hoverable" type="submit">
-				Submit
-			</button>
-		</form>
-	);
-};
-
 const HelpForm = ({ onSubmit, name, email }) => {
 	return (
 		<form className="modal-form" id="contact-form" onSubmit={onSubmit}>
@@ -238,7 +140,7 @@ class Modal extends React.Component {
 			: "modal display-none";
 		let form;
 
-		if (this.props.type === "request") {
+		/*if (this.props.type === "request") {
 			form = (
 				<RequestForm
 					onSubmit={this.handleSubmit.bind(this)}
@@ -249,15 +151,15 @@ class Modal extends React.Component {
 					name={this.props.name}
 				/>
 			);
-		} else if (this.props.type === "help") {
-			form = (
-				<HelpForm
-					onSubmit={this.submitBug.bind(this)}
-					email={this.props.email}
-					name={this.props.name}
-				/>
-			);
-		}
+		} else if (this.props.type === "help") {*/
+		form = (
+			<HelpForm
+				onSubmit={this.submitBug.bind(this)}
+				email={this.props.email}
+				name={this.props.name}
+			/>
+		);
+
 		return (
 			<div className={showHideClassName} ref={this.props.reference}>
 				<section className="modal-main">

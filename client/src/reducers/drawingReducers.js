@@ -2,7 +2,8 @@ import axios from "axios";
 import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,
-	SAVE_DATA
+	SAVE_DATA,
+	SET_SOCK
 } from "../actions/types";
 
 const initialState = {
@@ -20,7 +21,8 @@ const initialState = {
 	},
 	sideData: null,
 	bottomData: null,
-	topData: null
+	topData: null,
+	sockType: "crew"
 };
 
 export default function(state = initialState, action) {
@@ -62,6 +64,12 @@ export default function(state = initialState, action) {
 					topData: action.data
 				};
 			}
+		case SET_SOCK:
+			return {
+				...state,
+				sockType: action.payload
+			};
+			break;
 
 		default:
 			return state;

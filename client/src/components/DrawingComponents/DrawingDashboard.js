@@ -19,6 +19,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 //Redux Imports
 import { logoutUser } from "../../actions/authActions";
 import { toggleModal } from "../../actions/gridActions";
+import { setSock } from "../../actions/drawingActions";
 import { connect } from "react-redux";
 
 //style imports
@@ -30,7 +31,9 @@ import "../../styles/DrawingDashboard.css";
 class DesignLayout extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			value: "crew"
+		};
 	}
 
 	componentDidMount() {
@@ -57,6 +60,12 @@ class DesignLayout extends Component {
 			title: ""
 		};
 		this.props.toggleModal(modal);
+	};
+	changeSock = e => {
+		this.setState({
+			value: e.target.value
+		});
+		this.props.setSock(e.target.value);
 	};
 
 	render() {
@@ -98,6 +107,18 @@ class DesignLayout extends Component {
 					>
 						Logout
 					</a>
+					<div className="select-sock">
+						<select
+							value={this.state.value}
+							onChange={this.changeSock}
+						>
+							<option defaultValue value="crew">
+								Crew
+							</option>
+							<option value="ankle">Ankle</option>
+						</select>
+					</div>
+
 					<div className="row design-body">
 						<Tabs>
 							<TabList className="main-tabs">
@@ -139,10 +160,11 @@ class DesignLayout extends Component {
 
 const mapStateToProps = state => ({
 	auth: state.auth,
-	design: state.design
+	design: state.design,
+	drawing: state.drawing
 });
 
 export default connect(
 	mapStateToProps,
-	{ logoutUser, toggleModal }
+	{ logoutUser, toggleModal, setSock }
 )(DesignLayout);

@@ -26,7 +26,6 @@ transporter.verify((error, success) => {
 });
 
 router.post("/send", (req, res, next) => {
-	console.log(req);
 	var name = req.body.name;
 	var business = req.body.business;
 	var email = req.body.email;
@@ -38,31 +37,39 @@ router.post("/send", (req, res, next) => {
 	var side = String(req.body.side);
 	var bottom = String(req.body.bottom);
 	var top = String(req.body.top);
-	var img = String(req.body.img);
 	var content = `name: ${name} \n business: ${business} \n email: ${email} \n phone: ${phone} \n location: ${location} \n number needed: ${number} \n needed by: ${time} \n message: ${message}`;
-
+	var images = req.body.sideImages;
+	console.log(images);
+	var attachments = [
+		{
+			filename: business + "-side-view.jpg",
+			content: side.split("base64,")[1],
+			encoding: "base64"
+		},
+		{
+			filename: business + "-bottom-view.jpg",
+			content: bottom.split("base64,")[1],
+			encoding: "base64"
+		},
+		{
+			filename: business + "-top-view.jpg",
+			content: top.split("base64,")[1],
+			encoding: "base64"
+		}
+	];
+	images.forEach(function(item, index) {
+		attachments.push({
+			filename: "logo " + index,
+			content: top.split("base64,")[1],
+			encoding: "base64"
+		});
+	});
 	var mail = {
 		from: email,
 		to: auth.ADMIN, //Change to email address that you want to receive messages on
 		subject: "Someone Needs Some Socks!",
 		text: content,
-		attachments: [
-			{
-				filename: business + "-side-view.jpg",
-				content: side.split("base64,")[1],
-				encoding: "base64"
-			},
-			{
-				filename: business + "-bottom-view.jpg",
-				content: bottom.split("base64,")[1],
-				encoding: "base64"
-			},
-			{
-				filename: business + "-top-view.jpg",
-				content: top.split("base64,")[1],
-				encoding: "base64"
-			}
-		]
+		attachments: attachments
 	};
 
 	var confirmation = {
@@ -119,7 +126,6 @@ router.post("/reset", (req, res, next) => {
 	var link = "";
 	var token = "";
 	var details = {};
-	console.log(email);
 	if (email === "") {
 		return res.status(400).json({ email: "Email Required" });
 	}
