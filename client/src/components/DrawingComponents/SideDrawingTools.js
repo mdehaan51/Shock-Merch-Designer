@@ -70,10 +70,14 @@ class SideDrawingTools extends Component {
 		return (
 			<Tabs>
 				<TabList>
-					<Tab>Add Text</Tab>
 					<Tab>Change Color</Tab>
+					<Tab>Add Text</Tab>
+
 					<Tab>Add Image</Tab>
 				</TabList>
+				<TabPanel>
+					<ColorSelect />
+				</TabPanel>
 				<TabPanel>
 					<TextEditor
 						data={this.props.side.text}
@@ -83,9 +87,7 @@ class SideDrawingTools extends Component {
 						view="side"
 					/>
 				</TabPanel>
-				<TabPanel>
-					<ColorSelect />
-				</TabPanel>
+
 				<TabPanel>
 					<ImageUpload
 						saveImage={this.props.addImage}

@@ -69,7 +69,7 @@ class TopDrawingTools extends Component {
 			<Tabs>
 				<TabList>
 					<Tab>Add Text</Tab>
-					<Tab>Change Color</Tab>
+
 					<Tab>Add Logo</Tab>
 				</TabList>
 				<TabPanel>
@@ -81,9 +81,7 @@ class TopDrawingTools extends Component {
 						view="top"
 					/>
 				</TabPanel>
-				<TabPanel>
-					<ColorSelect />
-				</TabPanel>
+
 				<TabPanel>
 					<ImageUpload
 						saveImage={this.props.addImage}

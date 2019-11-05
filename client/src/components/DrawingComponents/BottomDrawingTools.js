@@ -74,7 +74,7 @@ class BottomDrawingTools extends Component {
 			<Tabs>
 				<TabList>
 					<Tab style={{ width: "25%" }}>Add Text</Tab>
-					<Tab style={{ width: "25%" }}>Change Color</Tab>
+
 					<Tab style={{ width: "25%" }}>Add Grip Pads</Tab>
 					<Tab style={{ width: "25%" }}>Add Logo</Tab>
 				</TabList>
@@ -87,9 +87,7 @@ class BottomDrawingTools extends Component {
 						view="bottom"
 					/>
 				</TabPanel>
-				<TabPanel>
-					<ColorSelect />
-				</TabPanel>
+
 				<TabPanel>
 					<ShapeSelector />
 				</TabPanel>

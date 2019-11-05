@@ -43,10 +43,6 @@ class Navbar extends React.Component {
 				<div className="size-input input-field form-row" />
 				<div className="submission-buttons">
 					<NavButton
-						name={"Request Quote"}
-						onClick={this.openRequestModal}
-					/>
-					<NavButton
 						name={"Bug Report"}
 						onClick={this.openHelpModal}
 					/>

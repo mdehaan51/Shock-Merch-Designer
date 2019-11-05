@@ -45,6 +45,10 @@ class SidePreview extends Component {
 	}
 
 	componentWillUnmount() {
+		this.setState({
+			selectedShape: ""
+		});
+		this.props.selectText("");
 		let sideURL = this.refs.sideStage.toDataURL();
 		this.props.saveData("side", sideURL);
 	}
@@ -68,13 +72,11 @@ class SidePreview extends Component {
 		let sockWidth = 500;
 		let sockHeight = 694;
 		let screenHeight = 750;
-		console.log(window.innerHeight);
 		if (window.innerWidth < 993) {
-			console.log("here");
 			sockHeight = this.state.height * 0.9;
 			scale = sockHeight / 694;
 			sockWidth = Math.min(scale * sockWidth);
-			console.log(sockHeight);
+
 			screenHeight = 375;
 		}
 		let sockImage = "images/socksideview4.png";
@@ -92,6 +94,12 @@ class SidePreview extends Component {
 					>
 						<Layer
 							onMouseDown={e => {
+								this.setState({
+									selectedShape: ""
+								});
+								this.props.selectText("");
+							}}
+							onTap={e => {
 								this.setState({
 									selectedShape: ""
 								});

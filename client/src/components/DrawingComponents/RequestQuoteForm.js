@@ -26,11 +26,45 @@ class RequestForm extends Component {
 		const side = this.props.drawing.sideData;
 		const bottom = this.props.drawing.bottomData;
 		const top = this.props.drawing.topData;
-		var sideImages = [];
-		if (this.props.side.images.length > 0) {
-			this.props.side.images.forEach(function(items) {
+		var imageStrings = [];
+		var images = this.props.side.images.concat(
+			this.props.bottom.images,
+			this.props.top.images
+		);
+		console.log(images);
+		if (images.length > 0) {
+			let promiseArr = images.map(async items => {
+				var content = imgSrcToDataURL(items.src).then(dataURL => {
+					return dataURL;
+				});
+				let result = await content;
+				imageStrings.push(result);
+			});
+
+			Promise.all(promiseArr)
+				.then(result => {
+					let messageData = {
+						name: name,
+						business: business,
+						email: email,
+						phone: phone,
+						location: city + " " + country,
+						number: number,
+						time: time,
+						message: message,
+						side: side,
+						bottom: bottom,
+						top: top,
+						images: imageStrings
+					};
+
+					this.sendMessage(messageData);
+				})
+				.catch(err => {});
+
+			/*this.props.side.images.forEach(async function(items) {
 				console.log(items);
-				var content = imgSrcToDataURL(items.src)
+				var content = await imgSrcToDataURL(items.src)
 					.then(dataURL => {
 						console.log(dataURL);
 
@@ -41,28 +75,31 @@ class RequestForm extends Component {
 						console.log(err);
 					});
 				sideImages.push(content);
-			});
-			console.log(sideImages);
+			});*/
+		} else {
+			let messageData = {
+				name: name,
+				business: business,
+				email: email,
+				phone: phone,
+				location: city + " " + country,
+				number: number,
+				time: time,
+				message: message,
+				side: side,
+				bottom: bottom,
+				top: top,
+				sideImages: [],
+				bottomImages: [],
+				topImages: []
+			};
+			this.sendMessage(messageData);
+			console.log(document.getElementById("name").value);
+			console.log(document.getElementById("business-name").value);
 		}
-		let messageData = {
-			name: name,
-			business: business,
-			email: email,
-			phone: phone,
-			location: city + " " + country,
-			number: number,
-			time: time,
-			message: message,
-			side: side,
-			bottom: bottom,
-			top: top,
-			sideImages: sideImages,
-			bottomImages: [],
-			topImages: []
-		};
-		console.log(document.getElementById("name").value);
-		console.log(document.getElementById("business-name").value);
-
+	};
+	sendMessage = messageData => {
+		console.log("sending");
 		axios({
 			method: "POST",
 			url: "/api/users/save_user",

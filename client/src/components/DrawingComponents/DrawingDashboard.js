@@ -32,7 +32,8 @@ class DesignLayout extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: "crew"
+			value: "crew",
+			counter: 0
 		};
 	}
 
@@ -66,6 +67,24 @@ class DesignLayout extends Component {
 			value: e.target.value
 		});
 		this.props.setSock(e.target.value);
+	};
+
+	nextPage = () => {
+		let counter = this.state.counter;
+		if (counter < 2) {
+			this.setState({
+				counter: counter + 1
+			});
+		} else {
+			this.props.history.push("/request-quote");
+		}
+	};
+
+	lastPage = () => {
+		let counter = this.state.counter;
+		this.setState({
+			counter: counter - 1
+		});
 	};
 
 	render() {
@@ -107,50 +126,86 @@ class DesignLayout extends Component {
 					>
 						Logout
 					</a>
-					<div className="select-sock">
-						<select
-							value={this.state.value}
-							onChange={this.changeSock}
-						>
-							<option defaultValue value="crew">
-								Crew
-							</option>
-							<option value="ankle">Ankle</option>
-						</select>
-					</div>
 
 					<div className="row design-body">
-						<Tabs>
-							<TabList className="main-tabs">
-								<Tab>Side of Sock</Tab>
-								<Tab>Bottom Of Sock</Tab>
-								<Tab>Top Of Sock</Tab>
-							</TabList>
-							<TabPanel>
+						{this.state.counter == 0 ? (
+							<React.Fragment>
+								<div className="navigation-bar">
+									<div className="select-sock">
+										<select
+											value={this.state.value}
+											onChange={this.changeSock}
+										>
+											<option defaultValue value="crew">
+												Crew
+											</option>
+											<option value="ankle">Ankle</option>
+										</select>
+									</div>
+
+									<button
+										className="button hoverable"
+										onClick={this.nextPage}
+									>
+										Next
+									</button>
+								</div>
 								<div className="col s12 m12 l6 xl6">
 									<SidePreview />
 								</div>
 								<div className="col s12 m12 l6 xl6">
 									<SideDrawingTools />
 								</div>
-							</TabPanel>
-							<TabPanel>
+							</React.Fragment>
+						) : this.state.counter == 1 ? (
+							<React.Fragment>
+								<div className="navigation-bar">
+									<button
+										className="button hoverable"
+										onClick={this.lastPage}
+									>
+										Go back
+									</button>
+
+									<button
+										className="button hoverable"
+										onClick={this.nextPage}
+									>
+										Next
+									</button>
+								</div>
 								<div className="col s12 m12 l6 xl6">
 									<BottomPreview />
 								</div>
 								<div className="col s12 m12 l6 xl6">
 									<BottomDrawingTools />
 								</div>
-							</TabPanel>
-							<TabPanel>
+							</React.Fragment>
+						) : this.state.counter == 2 ? (
+							<React.Fragment>
+								<div className="navigation-bar">
+									<button
+										className="button hoverable"
+										onClick={this.lastPage}
+									>
+										Go back
+									</button>
+
+									<button
+										className="button hoverable"
+										onClick={this.nextPage}
+									>
+										Request Quote
+									</button>
+								</div>
 								<div className="col s12 m12 l6 xl6">
 									<TopPreview />
 								</div>
 								<div className="col s12 m12 l6 xl6">
 									<TopDrawingTools />
 								</div>
-							</TabPanel>
-						</Tabs>
+							</React.Fragment>
+						) : null}
 					</div>
 				</div>
 			</div>

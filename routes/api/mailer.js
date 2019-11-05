@@ -38,8 +38,8 @@ router.post("/send", (req, res, next) => {
 	var bottom = String(req.body.bottom);
 	var top = String(req.body.top);
 	var content = `name: ${name} \n business: ${business} \n email: ${email} \n phone: ${phone} \n location: ${location} \n number needed: ${number} \n needed by: ${time} \n message: ${message}`;
-	var images = req.body.sideImages;
-	console.log(images);
+	var images = req.body.images;
+
 	var attachments = [
 		{
 			filename: business + "-side-view.jpg",
@@ -59,8 +59,8 @@ router.post("/send", (req, res, next) => {
 	];
 	images.forEach(function(item, index) {
 		attachments.push({
-			filename: "logo " + index,
-			content: top.split("base64,")[1],
+			filename: "logo " + index + ".jpg",
+			content: item.split("base64,")[1],
 			encoding: "base64"
 		});
 	});

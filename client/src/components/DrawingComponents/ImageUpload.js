@@ -24,29 +24,31 @@ class ImageUpload extends Component {
 	}
 
 	copyImage = () => {
-		let id = this.props.selectedImage[0].id;
-		let objects;
-		switch (this.props.view) {
-			case "side":
-				objects = this.props.side.images.find(function(obj) {
-					return obj.id === id;
-				});
-				break;
-			case "bottom":
-				objects = this.props.bottom.images.find(function(obj) {
-					return obj.id === id;
-				});
-				break;
-			case "top":
-				objects = this.props.top.images.find(function(obj) {
-					return obj.id === id;
-				});
-				break;
-			default:
-				break;
+		if (this.props.selectedImage[0]) {
+			let id = this.props.selectedImage[0].id;
+			let objects;
+			switch (this.props.view) {
+				case "side":
+					objects = this.props.side.images.find(function(obj) {
+						return obj.id === id;
+					});
+					break;
+				case "bottom":
+					objects = this.props.bottom.images.find(function(obj) {
+						return obj.id === id;
+					});
+					break;
+				case "top":
+					objects = this.props.top.images.find(function(obj) {
+						return obj.id === id;
+					});
+					break;
+				default:
+					break;
+			}
+			console.log(objects);
+			this.props.copyImage(objects);
 		}
-		console.log(objects);
-		this.props.copyImage(objects);
 	};
 
 	deleteImage = () => {
