@@ -7,7 +7,7 @@ import { ChromePicker } from "react-color";
 
 import { setShapeColor, addShape } from "../../actions/bottomActions";
 
-import { saveData } from "../../actions/drawingActions";
+import { saveData, savePreview } from "../../actions/drawingActions";
 
 import { connect } from "react-redux";
 
@@ -33,15 +33,14 @@ class ShapeSelector extends Component {
 		this.setState({
 			img: image
 		});
-		this.props.saveData("bottom", image);
+		this.props.savePreview(image);
 	};
 
 	resetFile = e => {
 		e.preventDefault();
 		this.setState({ img: null });
-		this.props.saveData("bottom", null);
+		this.props.savePreview(null);
 	};
-
 	render() {
 		return (
 			<div className="shape-list-container">
@@ -67,7 +66,7 @@ class ShapeSelector extends Component {
 					/>
 				</div>
 				<div className="grip-img-upload">
-					<h4>Already have a grip design?</h4>
+					<h5>Already have a grip design?</h5>
 					<label>Upload it here</label>
 
 					<input
@@ -76,9 +75,9 @@ class ShapeSelector extends Component {
 						onChange={this.onUpload}
 						placeholder="Awaiting Upload"
 					/>
-					<img src={this.state.img} />
+					<img src={this.props.drawing.preview} />
 
-					{this.state.img && (
+					{this.props.drawing.preview && (
 						<button
 							className="remove-logo button hoverable"
 							onClick={this.resetFile}
@@ -99,5 +98,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ setShapeColor, addShape, saveData }
+	{ setShapeColor, addShape, saveData, savePreview }
 )(ShapeSelector);

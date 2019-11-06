@@ -3,7 +3,8 @@ import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,
 	SAVE_DATA,
-	SET_SOCK
+	SET_SOCK,
+	SAVE_PREVIEW
 } from "./types";
 
 export const setPrimarySockColor = color => {
@@ -41,3 +42,9 @@ export const setSock = type => {
 	};
 };
 
+export const savePreview = img => {
+	return {
+		type: SAVE_PREVIEW,
+		payload: img
+	};
+};

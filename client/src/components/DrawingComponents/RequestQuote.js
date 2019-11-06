@@ -115,14 +115,18 @@ class DesignLayout extends Component {
 										alt="Side Image"
 									/>
 								</div>
+
 								<div className="image-container col s12 m6 l4 xl6">
 									<h5>Bottom View</h5>
 									<img
 										src={
-											this.props.drawing.bottomData ===
-											null
-												? "images/not-created.png"
-												: this.props.drawing.bottomData
+											this.props.drawing.preview === null
+												? this.props.drawing
+														.bottomData === null
+													? "images/not-created.png"
+													: this.props.drawing
+															.bottomData
+												: this.props.drawing.preview
 										}
 										alt="Bottom Image"
 									/>

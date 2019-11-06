@@ -24,7 +24,10 @@ class RequestForm extends Component {
 		const number = document.getElementById("number").value;
 		const time = document.getElementById("time").value;
 		const side = this.props.drawing.sideData;
-		const bottom = this.props.drawing.bottomData;
+		const bottom =
+			this.props.drawing.preview === null
+				? this.props.drawing.bottomData
+				: this.props.drawing.preview;
 		const top = this.props.drawing.topData;
 		var imageStrings = [];
 		var images = this.props.side.images.concat(

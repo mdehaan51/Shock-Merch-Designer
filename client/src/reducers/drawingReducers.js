@@ -3,7 +3,8 @@ import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,
 	SAVE_DATA,
-	SET_SOCK
+	SET_SOCK,
+	SAVE_PREVIEW
 } from "../actions/types";
 
 const initialState = {
@@ -22,7 +23,8 @@ const initialState = {
 	sideData: null,
 	bottomData: null,
 	topData: null,
-	sockType: "crew"
+	sockType: "crew",
+	preview: null
 };
 
 export default function(state = initialState, action) {
@@ -70,6 +72,11 @@ export default function(state = initialState, action) {
 				sockType: action.payload
 			};
 			break;
+		case SAVE_PREVIEW:
+			return {
+				...state,
+				preview: action.payload
+			};
 
 		default:
 			return state;
