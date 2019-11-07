@@ -9,8 +9,9 @@ function noop() {}
 
 if (process.env.NODE_ENV !== "development") {
 	Sentry.init({
-		dsn: "https://771c441e0a8c4391ab5b5b9eab7c4664@sentry.io/1729616"
+		dsn: "https://85ecf62311df4fc5979357b701caf672@sentry.io/1811803"
 	});
+
 	console.log = noop;
 	console.error = noop;
 	console.warn = noop;

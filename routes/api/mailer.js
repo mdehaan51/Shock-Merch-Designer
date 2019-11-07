@@ -67,7 +67,7 @@ router.post("/send", (req, res, next) => {
 		});
 	}
 	var mail = {
-		from: email,
+		from: "info@shocktrampoline.com",
 		to: auth.ADMIN, //Change to email address that you want to receive messages on
 		subject: "Someone Needs Some Socks!",
 		text: content,
