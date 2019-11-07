@@ -87,6 +87,10 @@ class ShapeSelector extends Component {
 							Remove Image
 						</button>
 					)}
+					<p>
+						If you already have a design that you use or simply dont
+						want to use our tool, please upload a sample design
+					</p>
 				</div>
 			</div>
 		);
