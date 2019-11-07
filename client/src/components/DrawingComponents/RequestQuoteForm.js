@@ -14,6 +14,28 @@ class RequestForm extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
+
+		var bottom = this.props.drawing.bottomData;
+
+		if (this.props.drawing.preview) {
+			const preview = async () => {
+				console.log("this is a preview");
+				const data = imgSrcToDataURL(this.props.drawing.preview).then(
+					data => {
+						return data;
+					}
+				);
+				console.log(data);
+				const result = await data;
+				this.changeImage(result);
+			};
+			preview();
+		} else {
+			this.changeImage(bottom);
+		}
+	};
+
+	changeImage = bottomData => {
 		const name = document.getElementById("name").value;
 		const business = document.getElementById("business-name").value;
 		const email = document.getElementById("email").value;
@@ -24,17 +46,13 @@ class RequestForm extends Component {
 		const number = document.getElementById("number").value;
 		const time = document.getElementById("time").value;
 		const side = this.props.drawing.sideData;
-		const bottom =
-			this.props.drawing.preview === null
-				? this.props.drawing.bottomData
-				: this.props.drawing.preview;
+		var bottom = bottomData;
 		const top = this.props.drawing.topData;
 		var imageStrings = [];
 		var images = this.props.side.images.concat(
 			this.props.bottom.images,
 			this.props.top.images
 		);
-		console.log(images);
 		if (images.length > 0) {
 			let promiseArr = images.map(async items => {
 				var content = imgSrcToDataURL(items.src).then(dataURL => {
@@ -43,6 +61,7 @@ class RequestForm extends Component {
 				let result = await content;
 				imageStrings.push(result);
 			});
+			console.log(promiseArr);
 
 			Promise.all(promiseArr)
 				.then(result => {
@@ -97,10 +116,9 @@ class RequestForm extends Component {
 				topImages: []
 			};
 			this.sendMessage(messageData);
-			console.log(document.getElementById("name").value);
-			console.log(document.getElementById("business-name").value);
 		}
 	};
+
 	sendMessage = messageData => {
 		console.log("sending");
 		axios({

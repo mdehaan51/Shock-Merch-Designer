@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import ShapeList from "./ShapeList.js";
 
 import { ChromePicker } from "react-color";
+import { imgSrcToDataURL } from "blob-util";
 
 import { setShapeColor, addShape } from "../../actions/bottomActions";
 
@@ -33,6 +34,7 @@ class ShapeSelector extends Component {
 		this.setState({
 			img: image
 		});
+
 		this.props.savePreview(image);
 	};
 

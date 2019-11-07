@@ -57,13 +57,15 @@ router.post("/send", (req, res, next) => {
 			encoding: "base64"
 		}
 	];
-	images.forEach(function(item, index) {
-		attachments.push({
-			filename: "logo " + index + ".jpg",
-			content: item.split("base64,")[1],
-			encoding: "base64"
+	if (images) {
+		images.forEach(function(item, index) {
+			attachments.push({
+				filename: "logo " + index + ".jpg",
+				content: item.split("base64,")[1],
+				encoding: "base64"
+			});
 		});
-	});
+	}
 	var mail = {
 		from: email,
 		to: auth.ADMIN, //Change to email address that you want to receive messages on
