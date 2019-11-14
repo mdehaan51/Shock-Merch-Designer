@@ -56,91 +56,93 @@ class Login extends Component {
           src="images/background.jpg"
         />
         <AuthTopBar />
-        <div className="auth-left">
-          <AuthText />
-        </div>
-        <div className="auth-right auth-details">
-          <div className="row">
-            <div className="col s8 offset-s2">
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <h4>
-                  <b style={{ color: "#dd137b" }}>Login below</b>
-                </h4>
-                <p
-                  className="text-darken-1"
-                  style={{ color: "#dd137b", fontWeight: "bold" }}
-                >
-                  Don't have an account?{" "}
-                  <Link
-                    to="/register"
-                    style={{ color: "beige", fontWeight: "bold" }}
-                  >
-                    Register
-                  </Link>
-                </p>
-              </div>
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="input-field col s12">
-                  <input
-                    onChange={this.onChange}
-                    value={this.state.email}
-                    error={errors.email}
-                    id="email"
-                    type="email"
-                    className={classnames("", {
-                      invalid: errors.email || errors.emailnotfound
-                    })}
-                  />
-                  <label htmlFor="email">Email</label>
-                  <span className="red-text">
-                    {errors.email}
-                    {errors.emailnotfound}
-                  </span>
-                </div>
-                <div className="input-field col s12">
-                  <input
-                    onChange={this.onChange}
-                    value={this.state.password}
-                    error={errors.password}
-                    id="password"
-                    type="password"
-                    className={classnames("", {
-                      invalid: errors.password || errors.passwordincorrect
-                    })}
-                  />
-                  <label htmlFor="password">Password</label>
-                  <span className="red-text">
-                    {errors.password}
-                    {errors.passwordincorrect}
-                  </span>
-                </div>
-
+        <div className="auth-container">
+          <div className="auth-left">
+            <AuthText />
+          </div>
+          <div className="auth-right auth-details">
+            <div className="row">
+              <div className="col s8 offset-s2">
                 <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                  <button
-                    style={{
-                      width: "150px",
-                      borderRadius: "3px",
-                      letterSpacing: "1.5px",
-                      marginTop: "1rem",
-                      backgroundColor: "#dd137b"
-                    }}
-                    type="submit"
-                    className="btn btn-large waves-effect waves-light hoverable"
+                  <h4>
+                    <b style={{ color: "#dd137b" }}>Login below</b>
+                  </h4>
+                  <p
+                    className="text-darken-1"
+                    style={{ color: "#dd137b", fontWeight: "bold" }}
                   >
-                    Login
-                  </button>
-                </div>
-                <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                  <p className="text-darken-1" style={{ color: "#dd137b" }}>
+                    Don't have an account?{" "}
                     <Link
-                      to="/forgot"
-                      style={{ color: "#dd137b", fontWeight: "bold" }}
+                      to="/register"
+                      style={{ color: "beige", fontWeight: "bold" }}
                     >
-                      Forgot Password
+                      Register
                     </Link>
                   </p>
                 </div>
-              </form>
+                <form noValidate onSubmit={this.onSubmit}>
+                  <div className="input-field col s12">
+                    <input
+                      onChange={this.onChange}
+                      value={this.state.email}
+                      error={errors.email}
+                      id="email"
+                      type="email"
+                      className={classnames("", {
+                        invalid: errors.email || errors.emailnotfound
+                      })}
+                    />
+                    <label htmlFor="email">Email</label>
+                    <span className="red-text">
+                      {errors.email}
+                      {errors.emailnotfound}
+                    </span>
+                  </div>
+                  <div className="input-field col s12">
+                    <input
+                      onChange={this.onChange}
+                      value={this.state.password}
+                      error={errors.password}
+                      id="password"
+                      type="password"
+                      className={classnames("", {
+                        invalid: errors.password || errors.passwordincorrect
+                      })}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <span className="red-text">
+                      {errors.password}
+                      {errors.passwordincorrect}
+                    </span>
+                  </div>
+
+                  <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                    <button
+                      style={{
+                        width: "150px",
+                        borderRadius: "3px",
+                        letterSpacing: "1.5px",
+                        marginTop: "1rem",
+                        backgroundColor: "#dd137b"
+                      }}
+                      type="submit"
+                      className="btn btn-large waves-effect waves-light hoverable"
+                    >
+                      Login
+                    </button>
+                  </div>
+                  <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                    <p className="text-darken-1" style={{ color: "#dd137b" }}>
+                      <Link
+                        to="/forgot"
+                        style={{ color: "#dd137b", fontWeight: "bold" }}
+                      >
+                        Forgot Password
+                      </Link>
+                    </p>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
