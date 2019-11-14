@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
+import * as moment from "moment";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 import { connect } from "react-redux";
 import { getAllUsers } from "../../actions/adminActions";
 import { logoutUser } from "../../actions/authActions";
 import { AuthTopBar, UserTable } from "../constants.js";
+import { CSVLink, CSVDownload } from "react-csv";
 
 class AdminDashboard extends Component {
 	constructor() {
@@ -42,7 +47,31 @@ class AdminDashboard extends Component {
 	};
 
 	render() {
-		console.log(this.props.admin.users);
+		const columns = [
+			{
+				Header: "Name",
+				accessor: "name"
+			},
+			{ Header: "Email", accessor: "email" },
+			{ Header: "Phone", accessor: "phone" },
+			{ Header: "Location", accessor: "location" },
+			{ Header: "Business", accessor: "business" },
+			{
+				Header: "Date",
+				accessor: "date",
+				Cell: props => (
+					<span>{moment(props.value).format("YYYY/MM/DD")}</span>
+				)
+			}
+		];
+		const csvHeaders = [
+			{ label: "Name", key: "name" },
+			{ label: "Email", key: "email" },
+			{ label: "Phone", key: "phone" },
+			{ label: "Location", key: "location" },
+			{ label: "Business", key: "business" },
+			{ label: "Date", key: "date" }
+		];
 		return (
 			<div className="valign-wrapper">
 				<AuthTopBar />
@@ -53,41 +82,22 @@ class AdminDashboard extends Component {
 					Logout
 				</a>
 				<div className="table-container">
-					<table style={{ width: "80%" }}>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Phone</th>
-								<th>Location</th>
-								<th>Business</th>
-							</tr>
-						</thead>
-						<tbody>
-							{this.state.users.length > 0 ? (
-								this.state.users.map((items, id) => {
-									console.log(items);
-									return (
-										<UserTable
-											key={id}
-											name={items.name}
-											email={items.email}
-											phone={items.phone}
-											location={items.location}
-											business={items.business}
-										/>
-									);
-								})
-							) : (
-								<tr>
-									<td>Loading</td>
-									<td>Loading</td>
-									<td>Loading</td>
-									<td>Loading</td>
-								</tr>
-							)}
-						</tbody>
-					</table>
+					{this.state.users.length > 0 ? (
+						<React.Fragment>
+							<CSVLink
+								className="export-button"
+								data={this.state.users}
+								headers={csvHeaders}
+							>
+								Export
+							</CSVLink>
+							<ReactTable
+								data={this.state.users}
+								columns={columns}
+								defaultPageSize={10}
+							/>
+						</React.Fragment>
+					) : null}
 				</div>
 			</div>
 		);

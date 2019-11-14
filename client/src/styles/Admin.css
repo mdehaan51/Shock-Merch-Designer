@@ -32,3 +32,37 @@
 
 	color: lightgray;
 }
+
+.ReactTable {
+	width: 100%;
+	color: white;
+}
+
+.rt-thead {
+	background: dimgray;
+}
+
+.rt-th {
+	border: 1px solid white;
+}
+
+.rt-td {
+	border: 1px solid white;
+	border-bottom: none;
+}
+
+.rt-tbody::-webkit-scrollbar {
+	display: none;
+}
+
+.pagination-bottom {
+	background: dimgray;
+}
+
+.export-button {
+	position: absolute;
+	right: 39px;
+	top: 140px;
+	color: white;
+	font-weight: bold;
+}
