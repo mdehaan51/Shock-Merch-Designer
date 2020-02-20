@@ -28,7 +28,7 @@
     "mailchimp-api-v3": "^1.13.1",
     "md5": "^2.2.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.3.0",
     "nodemailer-base64-to-s3": "^1.0.0",
     "nodemailer-mandrill-transport": "^1.2.0",
