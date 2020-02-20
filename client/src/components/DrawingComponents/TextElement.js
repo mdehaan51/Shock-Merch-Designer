@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import { Stage, Layer, Text, Transformer, Group } from "react-konva";
+import React from "react";
+import {  Text, Transformer, Group } from "react-konva";
 
 const TextElement = ({
 	shapeProps,

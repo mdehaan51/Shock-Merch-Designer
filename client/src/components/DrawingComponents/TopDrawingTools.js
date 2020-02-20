@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import { Stage, Layer, Rect, Text } from "react-konva";
 
-import ColorSelect from "./ColorPicker";
 import TextEditor from "./TextEditor";
 import ImageUpload from "./ImageUpload";
 
-import Konva from "konva";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import {
@@ -40,13 +36,13 @@ class TopDrawingTools extends Component {
 		this.props.setSecondarySockColor(color);
 	};
 	getSelectedItem = (item, type) => {
-		if (type == "text") {
+		if (type === "text") {
 			let allItems = this.props.top.text;
 			let itemDetails = allItems.filter(obj => {
 				return obj.id === item;
 			});
 			return itemDetails;
-		} else if (type == "image") {
+		} else if (type === "image") {
 			let allItems = this.props.top.images;
 			let itemDetails = allItems.filter(obj => {
 				return obj.id === item;
@@ -56,7 +52,6 @@ class TopDrawingTools extends Component {
 	};
 
 	render() {
-		let color = this.props.drawing.primary.hex;
 		let selectedText = this.getSelectedItem(
 			this.props.top.selectedItem,
 			"text"

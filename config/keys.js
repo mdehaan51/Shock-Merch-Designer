@@ -1,4 +1,6 @@
 module.exports = {
 	mongoURI: process.env.URI,
-	secretOrKey: "secret"
+	secretOrKey: "secret",
+	mailchimp: process.env.MAILCHIMP,
+	list_id: process.env.LIST_ID
 };

@@ -1,6 +1,6 @@
 // @flow
-import React, { Component, useState, useEffect } from "react";
-import { Stage, Layer, Text, Image, Transformer } from "react-konva";
+import React, {  useState, useEffect } from "react";
+import {  Image, Transformer } from "react-konva";
 import Konva from "konva";
 import useImage from "use-image";
 
@@ -20,7 +20,6 @@ const ShapeElement = ({
 	const shapeRef = React.useRef();
 	const trRef = React.useRef();
 	const [image] = useImage(url);
-	const [color, setColor] = useState(hex);
 
 	useEffect(() => {
 		if (hex) {

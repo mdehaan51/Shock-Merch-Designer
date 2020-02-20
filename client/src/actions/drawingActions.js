@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,

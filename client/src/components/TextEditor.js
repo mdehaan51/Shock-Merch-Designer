@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import FontPicker from "font-picker-react";
 import { CirclePicker } from "react-color";
 
 import FontSizeSelect from "./FontSizeSelect";
 
-import { addText, textColor } from "../actions/sideActions";
+import { addText } from "../actions/sideActions";
 import { connect } from "react-redux";
 
 import "react-tabs/style/react-tabs.css";

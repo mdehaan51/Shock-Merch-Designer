@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Konva from "konva";
-import { render } from "react-dom";
-import { Stage, Layer, Rect, Image } from "react-konva";
+
+import { Image } from "react-konva";
 import useImage from "use-image";
 
-const URL = "images/WhiteSocks.png";
 
 const SockImage2 = ({ width, height, red, blue, green, src, x }) => {
 	const [image] = useImage(src, "Anonimus");

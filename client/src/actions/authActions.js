@@ -9,8 +9,10 @@ import {
 } from "./types";
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+
 	axios
 		.post("/api/users/register", userData)
+		.then(subscribeUser(userData))
 		.then(res => history.push("/")) // re-direct to login on successful register
 		.catch(err =>
 			dispatch({
@@ -19,6 +21,20 @@ export const registerUser = (userData, history) => dispatch => {
 			})
 		);
 };
+
+export const subscribeUser = (userData) => {
+	console.log(userData)
+
+	axios.post("/api/mailer/subscribe", userData).then(response => {
+		console.log(response)
+		if (response.data.msg === "success") {
+			alert("User Subscribed.");
+			//this.resetForm();
+		} else if (response.data.msg === "fail") {
+			alert("Subscribe failed.");
+		}
+})}
+
 // Login - get user token
 export const loginUser = userData => dispatch => {
 	axios

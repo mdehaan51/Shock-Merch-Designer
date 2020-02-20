@@ -37,6 +37,7 @@ class TextPreview extends Component {
 				<img
 					className={hidden === true ? "deactivated" : ""}
 					src={logo}
+					alt="logo-preview"
 				/>
 			</div>
 		);

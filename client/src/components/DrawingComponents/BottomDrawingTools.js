@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import { Stage, Layer, Rect, Text } from "react-konva";
 
-import ColorSelect from "./ColorPicker";
 import TextEditor from "./TextEditor";
 import ShapeSelector from "./ShapeSelector";
 import ImageUpload from "./ImageUpload";
 
-import Konva from "konva";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import {
@@ -45,13 +41,13 @@ class BottomDrawingTools extends Component {
 	};
 
 	getSelectedItem = (item, type) => {
-		if (type == "text") {
+		if (type === "text") {
 			let allItems = this.props.bottom.text;
 			let itemDetails = allItems.filter(obj => {
 				return obj.id === item;
 			});
 			return itemDetails;
-		} else if (type == "image") {
+		} else if (type === "image") {
 			let allItems = this.props.bottom.images;
 			let itemDetails = allItems.filter(obj => {
 				return obj.id === item;
@@ -61,7 +57,6 @@ class BottomDrawingTools extends Component {
 	};
 
 	render() {
-		let color = this.props.drawing.primary.hex;
 		let selectedText = this.getSelectedItem(
 			this.props.bottom.selectedItem,
 			"text"

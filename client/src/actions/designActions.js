@@ -11,7 +11,6 @@ import {
 	SAVE_LOGO,
 	SET_LOGO_SIZE,
 	SET_LOGO_ROTATION,
-	SET_SOCK
 } from "./types";
 
 export const toggleModal = modalInfo => {

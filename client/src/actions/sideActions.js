@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
 	ADD_SIDE_TEXT,
 	UPDATE_SIDE_TEXT,

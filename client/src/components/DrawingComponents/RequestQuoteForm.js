@@ -121,7 +121,8 @@ class RequestForm extends Component {
 
 	sendMessage = messageData => {
 		console.log("sending");
-		axios({
+		axios({//defaultValue=""
+		//value={date}
 			method: "POST",
 			url: "/api/users/save_user",
 			data: messageData
@@ -132,9 +133,10 @@ class RequestForm extends Component {
 			url: "/api/mailer/send",
 			data: messageData
 		}).then(response => {
-			if (response.data.msg === "success") {
+			console.log(response)
+			if (response.data.statusCode === 200) {
 				alert("Message Sent.");
-			} else if (response.data.msg === "fail") {
+			} else  {
 				alert("Message failed to send. Please try again later.");
 			}
 		});
@@ -148,7 +150,7 @@ class RequestForm extends Component {
 				onSubmit={this.onSubmit}
 			>
 				<div className="form-row input-field">
-					<input type="text" placeholder="Full Name" id="name" />
+					<input disabled type="text" placeholder="Full Name" id="name" value={this.props.auth.user.name} />
 
 					<input
 						type="text"
@@ -159,9 +161,11 @@ class RequestForm extends Component {
 				</div>
 				<div className="form-row input-field">
 					<input
+					disabled
 						type="email"
 						placeholder="Email Address"
 						id="email"
+						value={this.props.auth.user.email}
 					/>
 					<input
 						type="tel"

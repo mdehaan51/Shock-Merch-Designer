@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 //Component Imports
 import Modal from "../Modal.js";
-import ProductPreview from "../ProductPreview";
 
-import DesignSettings from "../DesignSettings";
 import Navbar from "../NavBar.js";
 import BottomPreview from "./BottomPreview";
 import SidePreview from "./SidePreview";
@@ -14,7 +11,7 @@ import SideDrawingTools from "./SideDrawingTools";
 import BottomDrawingTools from "./BottomDrawingTools";
 import TopDrawingTools from "./TopDrawingTools";
 
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
 
 //Redux Imports
 import { logoutUser } from "../../actions/authActions";
@@ -25,7 +22,7 @@ import { connect } from "react-redux";
 //style imports
 import "../../styles/App.css";
 import "../../styles/DesignLayout.css";
-
+import "../../styles/DesignSettings.css";
 import "../../styles/DrawingDashboard.css";
 
 class DesignLayout extends Component {
@@ -88,11 +85,6 @@ class DesignLayout extends Component {
 	};
 
 	render() {
-		let size = {
-			width: this.state.gridWidth,
-			height: this.state.gridHeight,
-			backgroundSize: this.state.gridSize
-		};
 
 		return (
 			<div>
@@ -128,7 +120,7 @@ class DesignLayout extends Component {
 					</a>
 
 					<div className="row design-body">
-						{this.state.counter == 0 ? (
+						{this.state.counter === 0 ? (
 							<React.Fragment>
 								<div className="navigation-bar">
 									<div className="select-sock">
@@ -157,7 +149,7 @@ class DesignLayout extends Component {
 									<SideDrawingTools />
 								</div>
 							</React.Fragment>
-						) : this.state.counter == 1 ? (
+						) : this.state.counter === 1 ? (
 							<React.Fragment>
 								<div className="navigation-bar">
 									<button
@@ -181,7 +173,7 @@ class DesignLayout extends Component {
 									<BottomDrawingTools />
 								</div>
 							</React.Fragment>
-						) : this.state.counter == 2 ? (
+						) : this.state.counter === 2 ? (
 							<React.Fragment>
 								<div className="navigation-bar">
 									<button

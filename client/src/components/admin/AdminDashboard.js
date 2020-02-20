@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Moment from "react-moment";
 import * as moment from "moment";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -7,8 +6,8 @@ import "react-table/react-table.css";
 import { connect } from "react-redux";
 import { getAllUsers } from "../../actions/adminActions";
 import { logoutUser } from "../../actions/authActions";
-import { AuthTopBar, UserTable } from "../constants.js";
-import { CSVLink, CSVDownload } from "react-csv";
+import { AuthTopBar } from "../constants.js";
+import { CSVLink } from "react-csv";
 
 class AdminDashboard extends Component {
 	constructor() {

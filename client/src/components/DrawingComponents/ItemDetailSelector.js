@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
@@ -71,7 +70,7 @@ class ItemDetailSelector extends Component {
 	};
 
 	checkRange = (value, limiter, type) => {
-		if (type == "down") {
+		if (type === "down") {
 			value === limiter
 				? this.setState({
 						down: true,

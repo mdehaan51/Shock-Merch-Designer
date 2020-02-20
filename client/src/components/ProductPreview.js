@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import TextPreview from "./TextPreview";
 import LogoPreview from "./LogoPreview";
 
-import Draggable, { DraggableCore } from "react-draggable";
+import Draggable from "react-draggable";
 
 import "../styles/ProductPreview.css";
 
@@ -52,7 +52,7 @@ class ProductPreview extends Component {
 						</Draggable>
 					</div>
 				</div>
-				<img className="preview-img" src={data.sockPic} />
+				<img className="preview-img" src={data.sockPic} alt="preview-img"/>
 			</div>
 		);
 	}

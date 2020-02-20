@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import Portal from "./Portal";
-import { Stage, Layer, Rect, Text, Image } from "react-konva";
-import Konva from "konva";
 
-import SockImage from "./SockImage";
+import { Stage, Layer } from "react-konva";
+
 import SockImage2 from "./SockImage2";
-import { Socks } from "./constants";
-import SquareElement from "./TextElement";
+
 import ShapeElement from "./ShapeElement";
 
 import TextElement from "./TextElement";

@@ -40,7 +40,7 @@ class ForgotPassword extends Component {
 	onSubmit = e => {
 		e.preventDefault();
 		let host =
-			window.location.hostname == "localhost"
+			window.location.hostname === "localhost"
 				? window.location.hostname
 				: "www.shocktrampolineparkbuilder.com";
 		const userData = {

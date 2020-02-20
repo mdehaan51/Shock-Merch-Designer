@@ -46,7 +46,7 @@ class LogoUpload extends Component {
 					/>
 
 					<div className="sample-image-container">
-						<img src={data.logo} />
+						<img src={data.logo} alt="sample-img"/>
 					</div>
 					{data.logo && (
 						<button

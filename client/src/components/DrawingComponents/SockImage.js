@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import Konva from "konva";
-import { render } from "react-dom";
-import { Stage, Layer, Rect, Image } from "react-konva";
-import useImage from "use-image";
+import {  Image } from "react-konva";
 
-const URL = "images/WhiteSocks.png";
 
 class SockImage extends Component {
 	constructor(props) {

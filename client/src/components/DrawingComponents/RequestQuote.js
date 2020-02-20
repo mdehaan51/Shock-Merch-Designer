@@ -1,21 +1,10 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import axios from "axios";
 
 //Component Imports
 import Modal from "../Modal.js";
-import ProductPreview from "../ProductPreview";
 
-import DesignSettings from "../DesignSettings";
 import Navbar from "../NavBar.js";
-import BottomPreview from "./BottomPreview";
-import SidePreview from "./SidePreview";
-import TopPreview from "./TopPreview";
-import SideDrawingTools from "./SideDrawingTools";
-import BottomDrawingTools from "./BottomDrawingTools";
-import TopDrawingTools from "./TopDrawingTools";
 import RequestForm from "./RequestQuoteForm";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 //Redux Imports
 import { logoutUser } from "../../actions/authActions";
@@ -60,11 +49,7 @@ class DesignLayout extends Component {
 	};
 
 	render() {
-		let size = {
-			width: this.state.gridWidth,
-			height: this.state.gridHeight,
-			backgroundSize: this.state.gridSize
-		};
+
 
 		return (
 			<div>
@@ -112,7 +97,7 @@ class DesignLayout extends Component {
 												? "images/not-created.png"
 												: this.props.drawing.sideData
 										}
-										alt="Side Image"
+										alt="Side"
 									/>
 								</div>
 
@@ -128,7 +113,7 @@ class DesignLayout extends Component {
 															.bottomData
 												: this.props.drawing.preview
 										}
-										alt="Bottom Image"
+										alt="Bottom"
 									/>
 								</div>
 								<div className="image-container col s12 m6 l4 xl6">
@@ -140,7 +125,7 @@ class DesignLayout extends Component {
 												? "images/not-created.png"
 												: this.props.drawing.topData
 										}
-										alt="Top Image"
+										alt="Top"
 									/>
 								</div>
 							</div>

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+
 
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 import {
 	setLogoSize,
 	setLogoRotation,
-	setLogoWeight
+	
 } from "../actions/designActions";
 import { connect } from "react-redux";
 
@@ -56,7 +56,7 @@ class LogoSizeSelect extends Component {
 	};
 
 	checkRange = (value, limiter, type) => {
-		if (type == "down") {
+		if (type === "down") {
 			value === limiter
 				? this.setState({
 						down: true,

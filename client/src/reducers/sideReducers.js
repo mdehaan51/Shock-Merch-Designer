@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
 	ADD_SIDE_TEXT,
 	UPDATE_SIDE_TEXT,
@@ -7,7 +7,6 @@ import {
 	UPDATE_SIDE_IMAGES,
 	SELECT_SIDE_IMAGE,
 	COPY_SIDE_IMAGE,
-	GET_SELECTED_TEXT_DETAILS,
 	DELETE_SIDE_IMAGE
 } from "../actions/types";
 

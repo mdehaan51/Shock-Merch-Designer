@@ -1,5 +1,5 @@
 module.exports = {
-	USER: process.env.USER,
+	NAME: process.env.NAME,
 	PASS: process.env.PASS,
 	ADMIN: process.env.ADMIN
 };

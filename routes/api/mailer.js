@@ -3,17 +3,21 @@ const router = express.Router();
 var nodemailer = require("nodemailer");
 const creds = require("../../config/config");
 const auth = require("../../config/email_creds");
+const keys = require("../../config/keys");
 var sgTransport = require("nodemailer-sendgrid-transport");
 const User = require("../../models/User");
 const crypto = require("crypto");
+const Mailchimp = require('mailchimp-api-v3');
+var md5 = require('md5');
 
 var transport = {
 	service: "SendGrid",
 	auth: {
-		user: auth.USER,
+		user: auth.NAME,
 		pass: auth.PASS
 	}
 };
+
 
 var transporter = nodemailer.createTransport(transport);
 
@@ -24,6 +28,24 @@ transporter.verify((error, success) => {
 		console.log("Server is ready to take messages");
 	}
 });
+
+router.post("/subscribe", (req, res, next) =>{
+	const api_key = keys.mailchimp
+	const list_id = keys.list_id
+	const mailchimp = new Mailchimp(api_key)
+	mailchimp.post(`lists/${list_id}`, {members:[{
+		email_address: req.body.email,
+		status: "subscribed",
+		merge_fields: {
+			"FNAME": req.body.name,
+		}
+	}]}).then((result)=>{
+		console.log(result)
+		return res.send(result);
+	}).catch((error)=>{
+		return res.send(error)
+	})
+})
 
 router.post("/send", (req, res, next) => {
 	var name = req.body.name;
@@ -74,13 +96,24 @@ router.post("/send", (req, res, next) => {
 		attachments: attachments
 	};
 
-	var confirmation = {
-		from: "sales@shocktrampoline.com",
-		to: email,
-		subject: "Thanks for your submission to Shock!",
-		text:
-			"Thanks for your submission, our sales team will be in contact soon!"
-	};
+	const api_key = keys.mailchimp
+	const list_id = keys.list_id
+	const mailchimp = new Mailchimp(api_key)
+	const hash = md5(email)
+	mailchimp.patch(`lists/${list_id}/members/${hash}`, {
+		merge_fields: {
+			"FNAME": name,
+			"PHONE": phone,
+			"LOCATION": location,
+			"BUSINESS": business,
+			"RFQ": "Submitted",
+			"SOURCE": "Socks"
+		}
+	}).then((result)=>{
+		return res.send(result);
+	}).catch((error)=>{
+		return res.send(error)
+	})
 
 	transporter.sendMail(mail, (err, data) => {
 		if (err) {
@@ -88,10 +121,10 @@ router.post("/send", (req, res, next) => {
 				msg: "fail"
 			});
 		} else {
+			console.log('success')
 			res.json({
 				msg: "success"
 			});
-			transporter.sendMail(confirmation);
 		}
 	});
 });

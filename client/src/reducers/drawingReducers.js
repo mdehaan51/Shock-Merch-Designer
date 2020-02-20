@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
 	SET_PRIMARY_SOCK_COLOR,
 	SET_SECONDARY_SOCK_COLOR,
@@ -71,7 +70,7 @@ export default function(state = initialState, action) {
 				...state,
 				sockType: action.payload
 			};
-			break;
+		
 		case SAVE_PREVIEW:
 			return {
 				...state,

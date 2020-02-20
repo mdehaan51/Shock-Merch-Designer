@@ -1,6 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { NavButton, NavInput } from "./constants.js";
+import { NavButton } from "./constants.js";
 import { connect } from "react-redux";
 import { setGridSize, toggleModal } from "../actions/gridActions";
 

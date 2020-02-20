@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import FontPicker from "font-picker-react";
 
-import ItemDetailSelector from "./ItemDetailSelector";
 
 import { ChromePicker } from "react-color";
 

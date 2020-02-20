@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import ShapeList from "./ShapeList.js";
 
 import { ChromePicker } from "react-color";
-import { imgSrcToDataURL } from "blob-util";
 
 import { setShapeColor, addShape } from "../../actions/bottomActions";
 
@@ -56,6 +54,7 @@ class ShapeSelector extends Component {
 									onClick={() =>
 										this.addShape(item.src, item.name)
 									}
+									alt='shape-item'
 								/>
 							</div>
 						);
@@ -77,7 +76,7 @@ class ShapeSelector extends Component {
 						onChange={this.onUpload}
 						placeholder="Awaiting Upload"
 					/>
-					<img src={this.props.drawing.preview} />
+					<img src={this.props.drawing.preview} alt='drawing-preview'/>
 
 					{this.props.drawing.preview && (
 						<button
