@@ -38,6 +38,7 @@ router.post("/subscribe", (req, res, next) =>{
 		status: "subscribed",
 		merge_fields: {
 			"FNAME": req.body.name,
+			"SOURCE": "Socks"
 		}
 	}]}).then((result)=>{
 		console.log(result)
@@ -107,7 +108,6 @@ router.post("/send", (req, res, next) => {
 			"LOCATION": location,
 			"BUSINESS": business,
 			"RFQ": "Submitted",
-			"SOURCE": "Socks"
 		}
 	}).then((result)=>{
 		return res.send(result);
