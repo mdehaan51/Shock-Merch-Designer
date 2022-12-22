@@ -22,7 +22,7 @@
     "font-picker-react": "^3.4.0",
     "html2canvas": "^1.0.0-rc.3",
     "is-empty": "^1.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "konva": "^4.0.12",
     "mailchimp-api-v3": "^1.13.1",
